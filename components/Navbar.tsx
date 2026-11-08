@@ -4,7 +4,7 @@ import { useState, useEffect, useRef } from 'react';
 import { createPortal } from 'react-dom';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
-import { Headset, Menu, Phone, X } from 'lucide-react';
+import { ChevronDown, Headset, Menu, Phone, X } from 'lucide-react';
 import { AnimatePresence, motion, useReducedMotion } from 'framer-motion';
 import {
   NavigationMenu,
@@ -43,11 +43,14 @@ const primaryNavigation = [
 ];
 
 export default function Navbar() {
+  const pathname = usePathname();
   const [isOpen, setIsOpen] = useState(false);
+  const [servicesExpanded, setServicesExpanded] = useState(() =>
+    pathname.startsWith('/services')
+  );
   const [scrolled, setScrolled] = useState(false);
   const [mounted, setMounted] = useState(false);
   const phoneNumber = contactNumber;
-  const pathname = usePathname();
   const menuButtonRef = useRef<HTMLButtonElement>(null);
   const closeButtonRef = useRef<HTMLButtonElement>(null);
   const menuPanelRef = useRef<HTMLDivElement>(null);
@@ -68,6 +71,7 @@ export default function Navbar() {
 
   useEffect(() => {
     setIsOpen(false);
+    setServicesExpanded(pathname.startsWith('/services'));
   }, [pathname]);
 
   useEffect(() => {
@@ -214,23 +218,25 @@ export default function Navbar() {
           </Button>
         </div>
 
-        {/* Mobile Menu Button */}
-        <div className="flex items-center xl:hidden">
+        <div className="ml-auto flex items-center gap-2 xl:hidden">
+          <a
+            href={`tel:${phoneNumber}`}
+            aria-label={`Call SecurePal at ${phoneNumber}`}
+            className="flex h-10 w-10 items-center justify-center rounded-full border border-white/15 bg-white/10 text-white transition-colors hover:bg-white/20"
+          >
+            <Phone aria-hidden="true" className="h-4 w-4" />
+          </a>
           <Button
             ref={menuButtonRef}
             size="icon"
             variant="outline"
-            className="border-white/30 bg-white text-navy hover:bg-slate-100 hover:text-navy"
+            className="h-10 w-10 rounded-full border-white/15 bg-white/10 text-white hover:bg-white/20 hover:text-white"
             aria-label="Open navigation menu"
             aria-expanded={isOpen}
             aria-controls="mobile-navigation-panel"
             onClick={() => setIsOpen(true)}
           >
-            <Menu
-              aria-hidden="true"
-              className="h-6 w-6 text-navy"
-              strokeWidth={2.5}
-            />
+            <Menu aria-hidden="true" className="h-5 w-5" />
           </Button>
 
           {mounted &&
@@ -239,7 +245,7 @@ export default function Navbar() {
                 {isOpen && (
                   <motion.div
                     key="mobile-navigation-overlay"
-                    className="fixed inset-0 z-[60] bg-black/50 xl:hidden"
+                    className="fixed inset-0 z-[60] bg-slate-950/60 backdrop-blur-sm xl:hidden"
                     initial={shouldReduceMotion ? false : { opacity: 0 }}
                     animate={{ opacity: 1 }}
                     exit={{ opacity: 0 }}
@@ -252,7 +258,7 @@ export default function Navbar() {
                       role="dialog"
                       aria-modal="true"
                       aria-label="Mobile navigation"
-                      className="fixed right-0 top-0 bottom-0 w-[85vw] max-w-[380px] overflow-y-auto bg-white p-6 text-foreground shadow-2xl"
+                      className="fixed inset-y-0 right-0 flex w-full flex-col overflow-hidden bg-slate-50 text-foreground shadow-2xl sm:max-w-[420px]"
                       initial={shouldReduceMotion ? false : { x: '100%' }}
                       animate={{ x: 0 }}
                       exit={{ x: '100%' }}
@@ -262,61 +268,130 @@ export default function Navbar() {
                       }}
                       onClick={(event) => event.stopPropagation()}
                     >
-                      <div className="mb-4 flex items-center justify-between">
+                      <div className="flex shrink-0 items-center justify-between border-b border-border/70 bg-white px-5 pb-3 pt-[max(0.75rem,env(safe-area-inset-top))]">
                         <Logo size="sm" />
                         <Button
                           ref={closeButtonRef}
                           variant="ghost"
                           size="icon"
+                          className="rounded-full"
                           aria-label="Close navigation menu"
                           onClick={() => setIsOpen(false)}
                         >
-                          <X className="h-6 w-6" />
+                          <X aria-hidden="true" className="h-5 w-5" />
                         </Button>
                       </div>
 
                       <nav
                         aria-label="Mobile navigation links"
-                        className="flex max-h-[calc(100vh-230px)] flex-col gap-3 overflow-y-auto pr-2"
+                        className="min-h-0 flex-1 space-y-2 overflow-y-auto px-5 py-5"
                       >
                         {primaryNavigation.slice(0, 1).map((item) => (
                           <Link
                             key={item.name}
                             href={item.href}
-                            className={`text-base ${pathname === item.href ? 'font-bold' : ''}`}
+                            aria-current={
+                              pathname === item.href ? 'page' : undefined
+                            }
+                            className={`flex min-h-12 items-center rounded-xl border px-4 text-sm font-semibold transition-colors ${
+                              pathname === item.href
+                                ? 'border-cyan/50 bg-cyan/10 text-navy'
+                                : 'border-border/70 bg-white hover:border-cyan/50 hover:bg-cyan/5'
+                            }`}
                             onClick={() => setIsOpen(false)}
                           >
                             {item.name}
                           </Link>
                         ))}
-                        <div className="flex flex-col">
-                          <Link
-                            href="/services"
-                            className="text-base font-semibold"
-                            onClick={() => setIsOpen(false)}
+
+                        <div className="overflow-hidden rounded-xl border border-border/70 bg-white">
+                          <button
+                            type="button"
+                            aria-expanded={servicesExpanded}
+                            aria-controls="mobile-services-links"
+                            className={`flex min-h-12 w-full items-center justify-between px-4 text-left text-sm font-semibold transition-colors hover:bg-cyan/5 ${
+                              pathname.startsWith('/services')
+                                ? 'text-navy'
+                                : 'text-foreground'
+                            }`}
+                            onClick={() =>
+                              setServicesExpanded((expanded) => !expanded)
+                            }
                           >
-                            Services
-                          </Link>
-                          <div className="mt-2 grid gap-2 border-l border-border pl-4">
-                            {serviceNavigation.map((service) => (
-                              <Link
-                                key={service.name}
-                                href={service.href}
-                                className={`text-sm ${
-                                  pathname === service.href ? 'font-medium' : ''
-                                }`}
-                                onClick={() => setIsOpen(false)}
+                            <span>Services</span>
+                            <ChevronDown
+                              aria-hidden="true"
+                              className={`h-4 w-4 transition-transform ${
+                                servicesExpanded ? 'rotate-180' : ''
+                              }`}
+                            />
+                          </button>
+                          <AnimatePresence initial={false}>
+                            {servicesExpanded && (
+                              <motion.div
+                                id="mobile-services-links"
+                                className="overflow-hidden"
+                                initial={
+                                  shouldReduceMotion
+                                    ? false
+                                    : { height: 0, opacity: 0 }
+                                }
+                                animate={{ height: 'auto', opacity: 1 }}
+                                exit={{ height: 0, opacity: 0 }}
+                                transition={{
+                                  duration: shouldReduceMotion ? 0 : 0.2,
+                                }}
                               >
-                                {service.name}
-                              </Link>
-                            ))}
-                          </div>
+                                <div className="grid gap-1 border-t border-border/70 px-3 py-2">
+                                  <Link
+                                    href="/services"
+                                    aria-current={
+                                      pathname === '/services'
+                                        ? 'page'
+                                        : undefined
+                                    }
+                                    className="rounded-lg px-3 py-2 text-sm font-semibold text-primary hover:bg-accent"
+                                    onClick={() => setIsOpen(false)}
+                                  >
+                                    View all services
+                                  </Link>
+                                  {serviceNavigation.map((service) => (
+                                    <Link
+                                      key={service.name}
+                                      href={service.href}
+                                      aria-current={
+                                        pathname === service.href
+                                          ? 'page'
+                                          : undefined
+                                      }
+                                      className={`rounded-lg px-3 py-2 text-sm transition-colors hover:bg-accent ${
+                                        pathname === service.href
+                                          ? 'font-semibold text-navy'
+                                          : 'text-muted-foreground'
+                                      }`}
+                                      onClick={() => setIsOpen(false)}
+                                    >
+                                      {service.name}
+                                    </Link>
+                                  ))}
+                                </div>
+                              </motion.div>
+                            )}
+                          </AnimatePresence>
                         </div>
+
                         {primaryNavigation.slice(1).map((item) => (
                           <Link
                             key={item.name}
                             href={item.href}
-                            className={`text-base ${pathname === item.href ? 'font-bold' : ''}`}
+                            aria-current={
+                              pathname === item.href ? 'page' : undefined
+                            }
+                            className={`flex min-h-12 items-center rounded-xl border px-4 text-sm font-semibold transition-colors ${
+                              pathname === item.href
+                                ? 'border-cyan/50 bg-cyan/10 text-navy'
+                                : 'border-border/70 bg-white hover:border-cyan/50 hover:bg-cyan/5'
+                            }`}
                             onClick={() => setIsOpen(false)}
                           >
                             {item.name}
@@ -324,31 +399,48 @@ export default function Navbar() {
                         ))}
                       </nav>
 
-                      <div className="mt-4 border-t border-border pt-4">
+                      <div className="shrink-0 border-t border-border/70 bg-white/95 px-5 pb-[max(1rem,env(safe-area-inset-bottom))] pt-4">
                         <a
                           href={`tel:${phoneNumber}`}
-                          className="flex min-h-11 items-center text-base"
+                          className="flex min-h-14 items-center gap-3 rounded-xl bg-navy px-4 text-white transition-colors hover:bg-navy-soft"
                         >
-                          <Phone className="mr-2 h-5 w-5" /> {phoneNumber}
+                          <span className="flex h-9 w-9 items-center justify-center rounded-full bg-white/10">
+                            <Phone
+                              aria-hidden="true"
+                              className="h-4 w-4 text-cyan"
+                            />
+                          </span>
+                          <span className="flex flex-col leading-tight">
+                            <span className="text-xs text-white/70">
+                              Talk to our team
+                            </span>
+                            <span className="mt-1 text-sm font-semibold">
+                              {phoneNumber}
+                            </span>
+                          </span>
                         </a>
                         <Button
                           asChild
-                          variant="outline"
-                          className="mt-2 min-h-11 w-full"
+                          className="mt-3 min-h-11 w-full bg-cyan text-navy shadow-sm hover:bg-cyan/90 hover:text-navy"
                         >
-                          <Link href="/book-service">
-                            <Headset aria-hidden="true" className="mr-2 h-4 w-4" />
-                            Existing Customer Support
-                          </Link>
-                        </Button>
-                        <Button
-                          asChild
-                          className="mt-2 min-h-11 w-full bg-cyan text-navy hover:bg-cyan/90 hover:text-navy"
-                        >
-                          <Link href="/contact#enquiry">
+                          <Link
+                            href="/contact#enquiry"
+                            onClick={() => setIsOpen(false)}
+                          >
                             Book a Free Consultation
                           </Link>
                         </Button>
+                        <Link
+                          href="/book-service"
+                          className="mt-3 flex min-h-10 items-center justify-center text-sm font-semibold text-muted-foreground transition-colors hover:text-navy"
+                          onClick={() => setIsOpen(false)}
+                        >
+                          <Headset
+                            aria-hidden="true"
+                            className="mr-2 h-4 w-4"
+                          />
+                          Existing Customer Support
+                        </Link>
                       </div>
                     </motion.div>
                   </motion.div>

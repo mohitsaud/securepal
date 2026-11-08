@@ -200,3 +200,31 @@
 .animate-blink {
   animation: blink 1s step-start infinite;
 }
+
+@keyframes client-logo-marquee {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.client-logo-track {
+  animation: client-logo-marquee 32s linear infinite;
+}
+
+.client-logo-marquee:hover .client-logo-track {
+  animation-play-state: paused;
+}
+
+.client-logo-track-static {
+  animation: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .client-logo-track {
+    animation: none;
+  }
+
+  .client-logo-track > [aria-hidden='true'] {
+    display: none;
+  }
+}
