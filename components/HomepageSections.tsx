@@ -44,7 +44,8 @@ const industries = [
   {
     icon: BriefcaseBusiness,
     name: 'Professional services',
-    examples: 'Client enquiries, document collection, and appointment workflows.',
+    examples:
+      'Client enquiries, document collection, and appointment workflows.',
   },
   {
     icon: Building2,
@@ -127,10 +128,7 @@ export function AiSolutionsSection() {
             before recommending an approach.
           </p>
           <div className="flex shrink-0 flex-col gap-3 sm:flex-row">
-            <Button
-              asChild
-              className="bg-cyan text-navy hover:bg-cyan/90"
-            >
+            <Button asChild className="bg-cyan text-navy hover:bg-cyan/90">
               <Link href="/services/ai-solutions">
                 Explore SecurePal AI <ArrowRight className="ml-2 h-4 w-4" />
               </Link>
@@ -151,40 +149,60 @@ export function AiSolutionsSection() {
 
 export function IndustriesSection() {
   return (
-    <section id="industries" className="scroll-mt-24 bg-white py-20 md:py-28">
+    <section
+      id="industries"
+      className="scroll-mt-24 bg-linear-to-b from-white to-slate-50 py-20 md:py-28"
+    >
       <div className="container">
-        <div className="mx-auto max-w-3xl text-center">
-          <span className="mb-4 inline-flex rounded-full border border-cyan/20 bg-cyan-soft px-4 py-1.5 text-xs font-bold uppercase tracking-[0.16em] text-primary">
-            Industry-aware support
-          </span>
-          <h2 className="text-3xl font-bold tracking-tight text-navy md:text-5xl">
-            Technology for the way your industry works
-          </h2>
-          <p className="mx-auto mt-4 max-w-2xl leading-7 text-muted-foreground">
-            Every business has different systems and priorities. These are
-            examples of workflows we can discuss and assess with you.
+        <div className="grid items-end gap-6 md:grid-cols-[1.15fr_0.85fr] md:gap-12">
+          <div>
+            <span className="mb-5 inline-flex items-center gap-2 rounded-full border border-cyan/25 bg-cyan-soft/70 px-4 py-1.5 text-xs font-bold uppercase tracking-[0.16em] text-primary">
+              <span className="h-1.5 w-1.5 rounded-full bg-cyan" />
+              Industry-aware support
+            </span>
+            <h2 className="max-w-2xl text-3xl font-bold tracking-tight text-navy sm:text-4xl md:text-5xl">
+              Technology for the way your industry works
+            </h2>
+          </div>
+          <p className="max-w-xl leading-7 text-muted-foreground md:justify-self-end">
+            Every business has different systems and priorities. Explore
+            workflows we can discuss and assess around the way your team works.
           </p>
         </div>
 
-        <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-          {industries.map(({ icon: Icon, name, examples }) => (
+        <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:mt-14 lg:grid-cols-4">
+          {industries.map(({ icon: Icon, name, examples }, index) => (
             <article
               key={name}
-              className="rounded-2xl border border-border bg-background p-6"
+              className="group relative overflow-hidden rounded-3xl border border-slate-200/80 bg-white p-6 shadow-[0_12px_36px_-28px_rgba(16,30,53,0.35)] transition duration-300 hover:-translate-y-1 hover:border-cyan/40 hover:shadow-[0_20px_44px_-28px_rgba(16,30,53,0.32)] sm:p-7"
             >
-              <Icon aria-hidden="true" className="h-6 w-6 text-primary" />
-              <h3 className="mt-5 font-heading text-lg font-bold text-navy">
+              <div className="flex items-start justify-between">
+                <span className="inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-cyan-soft text-primary transition-colors duration-300 group-hover:bg-cyan group-hover:text-navy">
+                  <Icon aria-hidden="true" className="h-6 w-6" />
+                </span>
+                <span className="font-mono text-xs font-semibold tracking-widest text-slate-300">
+                  0{index + 1}
+                </span>
+              </div>
+              <h3 className="mt-7 font-heading text-lg font-bold leading-snug text-navy">
                 {name}
               </h3>
-              <p className="mt-2 text-sm leading-6 text-muted-foreground">
+              <p className="mt-3 text-sm leading-6 text-muted-foreground">
                 {examples}
               </p>
+              <div className="mt-6 h-px w-full bg-gradient-to-r from-cyan/50 via-slate-200 to-transparent" />
             </article>
           ))}
         </div>
 
-        <div className="mt-8 text-center">
-          <Button asChild variant="outline">
+        <div className="mt-9 flex flex-col items-center justify-between gap-5 rounded-2xl border border-slate-200/80 bg-white/70 px-6 py-5 text-center sm:flex-row sm:text-left">
+          <p className="text-sm leading-6 text-muted-foreground">
+            Have a different industry or a specific challenge in mind?
+          </p>
+          <Button
+            asChild
+            className="shrink-0 bg-navy text-white hover:bg-navy-soft"
+          >
             <Link href="/contact#enquiry">
               Talk through your needs <ArrowRight className="ml-2 h-4 w-4" />
             </Link>

@@ -35,7 +35,7 @@ export default function Home() {
 
       {/* CTA Section */}
       <section className="bg-secondary px-4 py-16 md:py-24">
-        <div className="container relative mx-auto overflow-hidden rounded-[2rem] bg-navy px-6 py-14 text-center text-primary-foreground shadow-xl shadow-navy/10 md:px-12 md:py-20">
+        <div className="container relative mx-auto overflow-hidden rounded-4xl bg-navy px-6 py-14 text-center text-primary-foreground shadow-xl shadow-navy/10 md:px-12 md:py-20">
           <motion.div
             className="relative mx-auto max-w-3xl"
             initial={shouldReduceMotion ? false : { opacity: 0, y: 20 }}
