@@ -27,7 +27,7 @@ const WebDevelopmentConsulting = () => {
       <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
         {/* Custom Development Strategy */}
         <div className="bg-white dark:bg-gray-900 shadow-md rounded-lg p-6 flex flex-col items-center text-center">
-          <Lightbulb className="text-blue-500 mb-4" size={40} />
+          <Lightbulb className="text-primary mb-4" size={40} />
           <h3 className="text-2xl font-semibold text-gray-900 dark:text-white">
             Custom Development Strategy
           </h3>
@@ -39,7 +39,7 @@ const WebDevelopmentConsulting = () => {
 
         {/* Frontend & Backend Architecture */}
         <div className="bg-white dark:bg-gray-900 shadow-md rounded-lg p-6 flex flex-col items-center text-center">
-          <Code className="text-blue-500 mb-4" size={40} />
+          <Code className="text-primary mb-4" size={40} />
           <h3 className="text-2xl font-semibold text-gray-900 dark:text-white">
             Frontend & Backend Architecture
           </h3>
@@ -50,7 +50,7 @@ const WebDevelopmentConsulting = () => {
 
         {/* UX/UI Optimization */}
         <div className="bg-white dark:bg-gray-900 shadow-md rounded-lg p-6 flex flex-col items-center text-center">
-          <MonitorSmartphone className="text-blue-500 mb-4" size={40} />
+          <MonitorSmartphone className="text-primary mb-4" size={40} />
           <h3 className="text-2xl font-semibold text-gray-900 dark:text-white">
             UX/UI Optimization
           </h3>
@@ -61,7 +61,7 @@ const WebDevelopmentConsulting = () => {
 
         {/* Security & Compliance */}
         <div className="bg-white dark:bg-gray-900 shadow-md rounded-lg p-6 flex flex-col items-center text-center">
-          <ShieldCheck className="text-blue-500 mb-4" size={40} />
+          <ShieldCheck className="text-primary mb-4" size={40} />
           <h3 className="text-2xl font-semibold text-gray-900 dark:text-white">
             Security & Compliance
           </h3>
@@ -72,7 +72,7 @@ const WebDevelopmentConsulting = () => {
 
         {/* Ongoing Support & Training */}
         <div className="bg-white dark:bg-gray-900 shadow-md rounded-lg p-6 flex flex-col items-center text-center">
-          <Users className="text-blue-500 mb-4" size={40} />
+          <Users className="text-primary mb-4" size={40} />
           <h3 className="text-2xl font-semibold text-gray-900 dark:text-white">
             Ongoing Support & Training
           </h3>

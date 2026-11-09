@@ -7,8 +7,6 @@ import Script from 'next/script';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import WhatsAppButton from '@/components/WhatsAppButton';
-import PhoneButton from '@/components/PhoneButton';
-import SocialMediaBar from '@/components/SocialMediaBar';
 import { Toaster } from '@/components/ui/sonner';
 
 declare global {
@@ -80,9 +78,7 @@ export default function ClientLayout({
         <Navbar />
         <main className="flex-1">{children}</main>
         <Footer />
-        {pathname !== '/about' && <SocialMediaBar />}
         <WhatsAppButton />
-        <PhoneButton />
         <Toaster position="top-right" richColors />
       </div>
     </div>

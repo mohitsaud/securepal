@@ -2,149 +2,145 @@
 
 import Link from 'next/link';
 import { motion, useReducedMotion } from 'framer-motion';
-import { Button } from '@/components/ui/button';
 import {
-  ArrowRight,
+  ArrowUpRight,
   Bot,
-  Check,
   Cloud,
   Headset,
   ShieldCheck,
 } from 'lucide-react';
+import { Button } from '@/components/ui/button';
 
-const containerVariants = {
-  initial: { opacity: 0 },
-  animate: {
-    opacity: 1,
-    transition: {
-      delayChildren: 0.3,
-      staggerChildren: 0.2,
-    },
+const coverage = [
+  {
+    icon: Headset,
+    title: 'Managed support',
+    detail: 'People, devices and everyday issues',
   },
-};
-
-const fadeInUp = {
-  initial: { opacity: 0, y: 20 },
-  animate: { opacity: 1, y: 0 },
-  transition: { duration: 0.6 },
-};
+  {
+    icon: ShieldCheck,
+    title: 'Cybersecurity',
+    detail: 'Identity, email and endpoint protection',
+  },
+  {
+    icon: Cloud,
+    title: 'Cloud & Microsoft 365',
+    detail: 'Collaboration, migration and administration',
+  },
+  {
+    icon: Bot,
+    title: 'AI & automation',
+    detail: 'Useful workflows, with human oversight',
+  },
+];
 
 export default function HeroSection() {
   const shouldReduceMotion = useReducedMotion();
 
   return (
     <section className="relative overflow-hidden bg-navy text-white">
-      <div className="container relative mx-auto grid items-center gap-10 px-4 py-12 sm:px-6 sm:py-16 md:gap-12 lg:min-h-[620px] lg:grid-cols-[1.05fr_0.95fr] lg:px-8 lg:py-20">
+      <div className="container grid items-center gap-8 pb-10 pt-6 sm:gap-12 sm:pb-20 sm:pt-10 md:grid-cols-[1.05fr_0.95fr] md:gap-10 lg:min-h-[640px] lg:grid-cols-[1.05fr_0.95fr] lg:gap-16 lg:pb-24 lg:pt-14">
         <motion.div
-          variants={shouldReduceMotion ? undefined : containerVariants}
-          initial={shouldReduceMotion ? false : 'initial'}
-          animate="animate"
-          className="relative z-10 max-w-2xl lg:py-8"
+          initial={shouldReduceMotion ? false : { opacity: 0, y: 14 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: shouldReduceMotion ? 0 : 0.45 }}
+          className="max-w-2xl"
         >
-          <motion.div variants={shouldReduceMotion ? undefined : fadeInUp}>
-            <span className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.18em] text-cyan sm:text-sm">
-              <ShieldCheck aria-hidden="true" className="h-4 w-4" />
-              IT that works. Security that matters.
-            </span>
-          </motion.div>
-          <motion.h1
-            variants={shouldReduceMotion ? undefined : fadeInUp}
-            className="mt-5 max-w-2xl text-4xl font-bold leading-[1.08] tracking-tight text-white sm:text-5xl lg:text-6xl"
-          >
-            Your business IT. Protected and managed.
-          </motion.h1>
-          <motion.p
-            variants={shouldReduceMotion ? undefined : fadeInUp}
-            className="mt-5 max-w-xl text-base leading-7 text-slate-300 sm:mt-6 sm:text-lg sm:leading-8"
-          >
-            Straightforward advice and dependable managed IT, cybersecurity,
-            cloud and customised AI solutions—thoughtfully tailored to help
-            Australian small businesses work smarter and operate securely.
-          </motion.p>
-          <motion.div
-            variants={shouldReduceMotion ? undefined : fadeInUp}
-            className="mt-7 flex flex-col gap-3 sm:mt-8 sm:flex-row"
-          >
-            <Button asChild size="lg" className="h-12 w-full bg-cyan px-6 text-navy shadow-sm shadow-black/10 hover:bg-cyan/90 sm:w-auto">
-              <Link href="/contact#enquiry">
-                Book a Free IT &amp; Cyber Review
-                <ArrowRight className="h-4 w-4" />
-              </Link>
+          <p className="mb-4 inline-flex items-center gap-2.5 text-sm font-medium text-cyan sm:mb-6">
+            <span aria-hidden="true" className="h-px w-8 bg-cyan" />
+            IT support for Australian businesses
+          </p>
+          <h1 className="max-w-2xl text-[2.65rem] font-bold leading-[1.08] tracking-[-0.045em] sm:text-5xl lg:text-[4.25rem]">
+            IT that works. Security that matters.
+          </h1>
+          <p className="mt-5 max-w-xl text-base leading-7 text-slate-300 sm:mt-6 lg:text-lg lg:leading-8">
+            Everyday IT, security, cloud and automation for growing businesses.
+          </p>
+          <div className="mt-6 flex flex-col gap-3 sm:mt-8 sm:flex-row md:flex-col lg:flex-row">
+            <Button
+              asChild
+              size="lg"
+              className="h-12 bg-cyan px-6 text-navy hover:bg-cyan/90"
+            >
+              <Link href="/contact#enquiry">Book a free IT &amp; Cyber Review</Link>
             </Button>
             <Button
               asChild
               size="lg"
               variant="outline"
-              className="h-12 w-full border-white/30 bg-transparent px-6 text-white hover:bg-white/10 hover:text-white sm:w-auto"
+              className="h-12 border-white/25 bg-transparent px-6 text-white hover:bg-white/10 hover:text-white"
             >
-              <Link href="/services">Explore Our Services</Link>
+              <Link href="/services">See how we can help</Link>
             </Button>
-          </motion.div>
-          <motion.div
-            variants={shouldReduceMotion ? undefined : fadeInUp}
-            className="mt-7 flex flex-wrap gap-x-5 gap-y-3 text-xs font-medium text-slate-200 sm:mt-8 sm:text-sm"
-          >
-            {[
-              'Business-first advice',
-              'Security-minded support',
-              'Practical solutions',
-            ].map((benefit) => (
-              <span key={benefit} className="inline-flex items-center gap-2">
-                <Check aria-hidden="true" className="h-4 w-4 text-cyan" />
-                {benefit}
-              </span>
-            ))}
-          </motion.div>
+          </div>
+          <p className="mt-5 text-sm text-slate-300 sm:mt-7">
+            Based in Hurstville, NSW.
+          </p>
         </motion.div>
 
         <motion.div
           initial={shouldReduceMotion ? false : { opacity: 0, y: 12 }}
-          animate={{ opacity: 1, scale: 1, y: 0 }}
-          transition={{ duration: shouldReduceMotion ? 0 : 0.45, delay: shouldReduceMotion ? 0 : 0.1 }}
-          className="relative mx-auto w-full max-w-lg lg:max-w-none"
+          animate={{ opacity: 1, y: 0 }}
+          transition={{
+            duration: shouldReduceMotion ? 0 : 0.45,
+            delay: shouldReduceMotion ? 0 : 0.08,
+          }}
+          className="relative"
         >
-          <div
-            aria-hidden="true"
-            className="relative isolate flex aspect-[4/3] items-center justify-center overflow-hidden rounded-2xl border border-white/10 bg-[radial-gradient(ellipse_at_50%_42%,#234967_0%,#172c47_44%,#101e35_78%)] shadow-2xl shadow-black/20 sm:rounded-3xl"
-          >
-            <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.035)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.035)_1px,transparent_1px)] bg-[size:34px_34px] [mask-image:linear-gradient(to_bottom,black,transparent_88%)]" />
-            <div className="absolute left-1/2 top-[43%] aspect-square w-[68%] -translate-x-1/2 -translate-y-1/2 rounded-full border border-white/[0.08]" />
-            <div className="absolute left-1/2 top-[43%] aspect-square w-[48%] -translate-x-1/2 -translate-y-1/2 rounded-full border border-white/[0.1]" />
-
-            <div className="absolute left-5 top-5 flex items-center gap-2 text-[0.65rem] font-bold uppercase tracking-[0.17em] text-slate-300 sm:left-7 sm:top-7">
-              <span className="h-1.5 w-1.5 rounded-full bg-cyan shadow-[0_0_12px_rgba(34,199,189,0.9)]" />
-              SecurePal technology
-            </div>
-            <div className="absolute right-5 top-5 font-mono text-[0.65rem] tracking-widest text-white/40 sm:right-7 sm:top-7">
-              IT / SECURITY
-            </div>
-
-            <div className="relative z-10 flex aspect-square w-[30%] min-w-[110px] max-w-[170px] items-center justify-center rounded-[2rem] border border-cyan/25 bg-cyan/[0.08] shadow-[0_0_80px_rgba(34,199,189,0.12)]">
-              <div className="absolute inset-2 rounded-[1.55rem] border border-white/[0.08]" />
-              <ShieldCheck className="h-[42%] w-[42%] text-cyan" strokeWidth={1.35} />
+          <div className="rounded-2xl border border-white/15 bg-navy-soft p-4 sm:p-7 lg:p-8">
+            <div className="flex items-start justify-between gap-6 border-b border-white/15 pb-4 sm:pb-5">
+              <div>
+                <p className="text-sm font-semibold text-white">
+                  Your technology, working together
+                </p>
+                <p className="mt-1 hidden text-sm text-slate-300 sm:block">
+                  Support that connects the moving parts.
+                </p>
+              </div>
+              <span
+                aria-hidden="true"
+                className="mt-1.5 h-2.5 w-2.5 shrink-0 rounded-full bg-cyan"
+              />
             </div>
 
-            <span className="absolute left-[17%] top-[35%] flex h-11 w-11 items-center justify-center rounded-2xl border border-white/10 bg-navy/70 text-slate-200 shadow-lg backdrop-blur-sm sm:h-12 sm:w-12">
-              <Headset className="h-5 w-5" strokeWidth={1.6} />
-            </span>
-            <span className="absolute right-[17%] top-[35%] flex h-11 w-11 items-center justify-center rounded-2xl border border-white/10 bg-navy/70 text-slate-200 shadow-lg backdrop-blur-sm sm:h-12 sm:w-12">
-              <Cloud className="h-5 w-5" strokeWidth={1.6} />
-            </span>
-            <span className="absolute bottom-[32%] left-[24%] flex h-11 w-11 items-center justify-center rounded-2xl border border-white/10 bg-navy/70 text-slate-200 shadow-lg backdrop-blur-sm sm:h-12 sm:w-12">
-              <Bot className="h-5 w-5" strokeWidth={1.6} />
-            </span>
-            <span className="absolute bottom-[32%] right-[24%] flex h-11 w-11 items-center justify-center rounded-2xl border border-white/10 bg-navy/70 text-slate-200 shadow-lg backdrop-blur-sm sm:h-12 sm:w-12">
-              <Check className="h-5 w-5 text-cyan" strokeWidth={2} />
-            </span>
-
-            <div className="absolute inset-x-5 bottom-5 flex items-center justify-between border-t border-white/10 pt-4 sm:inset-x-7 sm:bottom-7 sm:pt-5">
-              <span className="text-xs font-semibold text-white/75 sm:text-sm">
-                One connected IT partner
-              </span>
-              <span className="text-[0.65rem] font-medium uppercase tracking-[0.16em] text-cyan/80">
-                Built around you
-              </span>
+            <div className="relative mt-3 sm:mt-2">
+              <span
+                aria-hidden="true"
+                className="absolute bottom-8 left-[1.1rem] top-8 hidden w-px bg-cyan/35 sm:block"
+              />
+              <ul className="grid grid-cols-2 gap-2 sm:block sm:gap-0">
+                {coverage.map(({ icon: Icon, title, detail }) => (
+                  <li
+                    key={title}
+                    className="relative flex min-w-0 flex-col items-start gap-2 rounded-xl border border-white/10 bg-white/[0.03] p-3 sm:flex-row sm:items-center sm:gap-4 sm:rounded-none sm:border-0 sm:border-b sm:bg-transparent sm:px-0 sm:py-5 sm:last:border-0"
+                  >
+                    <span className="relative z-10 inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-cyan/35 bg-navy-soft text-cyan">
+                      <Icon
+                        aria-hidden="true"
+                        className="h-4 w-4"
+                        strokeWidth={1.8}
+                      />
+                    </span>
+                    <span>
+                      <span className="block font-heading text-sm font-semibold text-white sm:text-base">
+                        {title}
+                      </span>
+                      <span className="sr-only mt-1 text-sm leading-5 text-slate-300 sm:not-sr-only sm:mt-1 sm:block">
+                        {detail}
+                      </span>
+                    </span>
+                  </li>
+                ))}
+              </ul>
             </div>
+
+            <Link
+              href="/services"
+              className="mt-3 inline-flex min-h-11 items-center gap-2 text-sm font-semibold text-cyan transition-colors hover:text-white sm:mt-4"
+            >
+              Explore our services
+              <ArrowUpRight aria-hidden="true" className="h-4 w-4" />
+            </Link>
           </div>
         </motion.div>
       </div>

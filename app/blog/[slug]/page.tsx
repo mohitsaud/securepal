@@ -16,9 +16,9 @@ export default function BlogPostPage() {
   if (!post) {
     return (
       <div className="min-h-screen flex items-center justify-center">
-        <p className="text-center text-gray-600 dark:text-gray-400">
+        <p className="text-center text-muted-foreground">
           Blog post not found.{' '}
-          <Link href="/blog" className="text-blue-600">
+          <Link href="/blog" className="text-primary hover:text-brand-hover">
             Go back
           </Link>
         </p>
@@ -33,8 +33,8 @@ export default function BlogPostPage() {
         <meta name="description" content={post.excerpt} />
       </Head>
 
-      <section className="min-h-screen bg-gray-100 dark:bg-gray-900 py-12 px-6 md:px-16">
-        <div className="max-w-3xl mx-auto bg-white dark:bg-gray-800 shadow-lg rounded-lg overflow-hidden">
+      <section className="min-h-screen bg-background px-6 py-12 md:px-16">
+        <div className="mx-auto max-w-3xl overflow-hidden rounded-lg border border-border bg-white shadow-lg">
           <Image
             src={post.image}
             alt={post.title}
@@ -51,12 +51,12 @@ export default function BlogPostPage() {
                 <AvatarImage src={post.author.image} alt={post.author.name} />
                 <AvatarFallback>{post.author.name.charAt(0)}</AvatarFallback>
               </Avatar>
-              <p className="text-gray-700 dark:text-gray-300 text-sm">
+              <p className="text-sm text-muted-foreground">
                 {post.author.name} • {post.date}
               </p>
             </div>
             <div
-              className="mt-6 text-gray-700 dark:text-gray-300"
+              className="mt-6 text-foreground"
               dangerouslySetInnerHTML={{
                 __html: DOMPurify.sanitize(post.content),
               }}

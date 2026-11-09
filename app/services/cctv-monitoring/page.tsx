@@ -19,7 +19,7 @@ const floatingVariants = (delay: number) => ({
 
 const CCTVMonitoring = () => {
   return (
-    <section className="py-24 bg-gradient-to-r from-primary/10 to-primary/5">
+    <section className="bg-background py-24">
       <div className="container mx-auto px-6 md:px-12 lg:px-24">
         <div className="grid gap-16 md:grid-cols-2 items-center">
           {/* Text Content */}

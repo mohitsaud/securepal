@@ -61,28 +61,28 @@ const EmailMigrationPage = () => {
         </h2>
         <div className="mt-8 grid md:grid-cols-4 gap-6">
           <div className="p-6 bg-white dark:bg-gray-900 shadow-md rounded-lg text-center">
-            <Mail className="text-blue-500 mx-auto mb-3" size={40} />
+            <Mail className="text-primary mx-auto mb-3" size={40} />
             <h4 className="font-semibold text-lg">Step 1: Setup</h4>
             <p className="text-gray-600 dark:text-gray-300 mt-2">
               Provide credentials for your current and new email providers.
             </p>
           </div>
           <div className="p-6 bg-white dark:bg-gray-900 shadow-md rounded-lg text-center">
-            <Users className="text-blue-500 mx-auto mb-3" size={40} />
+            <Users className="text-primary mx-auto mb-3" size={40} />
             <h4 className="font-semibold text-lg">Step 2: Selection</h4>
             <p className="text-gray-600 dark:text-gray-300 mt-2">
               Choose the folders or emails you want to migrate.
             </p>
           </div>
           <div className="p-6 bg-white dark:bg-gray-900 shadow-md rounded-lg text-center">
-            <ShieldCheck className="text-blue-500 mx-auto mb-3" size={40} />
+            <ShieldCheck className="text-primary mx-auto mb-3" size={40} />
             <h4 className="font-semibold text-lg">Step 3: Migration</h4>
             <p className="text-gray-600 dark:text-gray-300 mt-2">
               Start the migration process with secure data transfer.
             </p>
           </div>
           <div className="p-6 bg-white dark:bg-gray-900 shadow-md rounded-lg text-center">
-            <CheckCircle className="text-blue-500 mx-auto mb-3" size={40} />
+            <CheckCircle className="text-primary mx-auto mb-3" size={40} />
             <h4 className="font-semibold text-lg">Step 4: Completion</h4>
             <p className="text-gray-600 dark:text-gray-300 mt-2">
               Verify and finalize the migration with our support team.

@@ -112,11 +112,11 @@ export default function BookServiceForm() {
     <form onSubmit={handleSubmit} className="space-y-6">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <div className="relative">
-          <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1">
+          <label htmlFor="name" className="mb-1 block text-sm font-medium text-foreground">
             Full Name *
           </label>
           <div className="relative">
-            <User className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
+            <User className="absolute left-3 top-1/2 h-5 w-5 -translate-y-1/2 text-muted-foreground" />
             <input
               type="text"
               id="name"
@@ -124,36 +124,36 @@ export default function BookServiceForm() {
               required
               value={formData.name}
               onChange={handleChange}
-              className="pl-10 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 px-4 py-3 text-base"
+              className="pl-10 block w-full rounded-md border-input shadow-sm focus:border-primary focus:ring-ring px-4 py-3 text-base"
               placeholder="John Doe"
             />
           </div>
         </div>
 
         <div className="relative">
-          <label htmlFor="organization" className="block text-sm font-medium text-gray-700 mb-1">
+          <label htmlFor="organization" className="mb-1 block text-sm font-medium text-foreground">
             Organization/Office Name
           </label>
           <div className="relative">
-            <Building2 className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
+            <Building2 className="absolute left-3 top-1/2 h-5 w-5 -translate-y-1/2 text-muted-foreground" />
             <input
               type="text"
               id="organization"
               name="organization"
               value={formData.organization}
               onChange={handleChange}
-              className="pl-10 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 px-4 py-3 text-base"
+              className="pl-10 block w-full rounded-md border-input shadow-sm focus:border-primary focus:ring-ring px-4 py-3 text-base"
               placeholder="Company Name"
             />
           </div>
         </div>
 
         <div className="relative">
-          <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-1">
+          <label htmlFor="phone" className="mb-1 block text-sm font-medium text-foreground">
             Phone Number *
           </label>
           <div className="relative">
-            <Phone className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
+            <Phone className="absolute left-3 top-1/2 h-5 w-5 -translate-y-1/2 text-muted-foreground" />
             <input
               type="tel"
               id="phone"
@@ -161,18 +161,18 @@ export default function BookServiceForm() {
               required
               value={formData.phone}
               onChange={handleChange}
-              className="pl-10 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 px-4 py-3 text-base"
+              className="pl-10 block w-full rounded-md border-input shadow-sm focus:border-primary focus:ring-ring px-4 py-3 text-base"
               placeholder="(02) 9051 0054"
             />
           </div>
         </div>
 
         <div className="relative">
-          <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
+          <label htmlFor="email" className="mb-1 block text-sm font-medium text-foreground">
             Email Address *
           </label>
           <div className="relative">
-            <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
+            <Mail className="absolute left-3 top-1/2 h-5 w-5 -translate-y-1/2 text-muted-foreground" />
             <input
               type="email"
               id="email"
@@ -180,18 +180,18 @@ export default function BookServiceForm() {
               required
               value={formData.email}
               onChange={handleChange}
-              className="pl-10 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 px-4 py-3 text-base"
+              className="pl-10 block w-full rounded-md border-input shadow-sm focus:border-primary focus:ring-ring px-4 py-3 text-base"
               placeholder="john@example.com"
             />
           </div>
         </div>
 
         <div className="relative">
-          <label htmlFor="bookingDate" className="block text-sm font-medium text-gray-700 mb-1">
+          <label htmlFor="bookingDate" className="mb-1 block text-sm font-medium text-foreground">
             Preferred Date *
           </label>
           <div className="relative">
-            <Calendar className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
+            <Calendar className="absolute left-3 top-1/2 h-5 w-5 -translate-y-1/2 text-muted-foreground" />
             <input
               type="date"
               id="bookingDate"
@@ -200,24 +200,24 @@ export default function BookServiceForm() {
               min={minDate}
               value={formData.bookingDate}
               onChange={handleChange}
-              className="pl-10 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 px-4 py-3 text-base"
+              className="pl-10 block w-full rounded-md border-input shadow-sm focus:border-primary focus:ring-ring px-4 py-3 text-base"
             />
           </div>
         </div>
 
         <div className="relative">
-          <label htmlFor="bookingTime" className="block text-sm font-medium text-gray-700 mb-1">
+          <label htmlFor="bookingTime" className="mb-1 block text-sm font-medium text-foreground">
             Preferred Time *
           </label>
           <div className="relative">
-            <Clock className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
+            <Clock className="absolute left-3 top-1/2 h-5 w-5 -translate-y-1/2 text-muted-foreground" />
             <select
               id="bookingTime"
               name="bookingTime"
               required
               value={formData.bookingTime}
               onChange={handleChange}
-              className="pl-10 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 px-4 py-3 text-base"
+              className="pl-10 block w-full rounded-md border-input shadow-sm focus:border-primary focus:ring-ring px-4 py-3 text-base"
             >
               <option value="">Select a time</option>
               {Array.from({ length: 24 }, (_, i) => {
@@ -243,7 +243,7 @@ export default function BookServiceForm() {
         <Button
           type="submit"
           disabled={isSubmitting}
-          className={`px-8 py-3 bg-blue-600 text-white font-medium rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-colors cursor-pointer ${
+          className={`px-8 py-3 bg-primary text-white font-medium rounded-md hover:bg-brand-hover focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 transition-colors cursor-pointer ${
             isSubmitting ? 'opacity-75' : ''
           }`}
         >

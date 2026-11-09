@@ -99,14 +99,14 @@ const OfficeSuiteSetup = () => {
         </h2>
         <div className="mt-8 grid md:grid-cols-4 gap-6">
           <div className="p-6 bg-white dark:bg-gray-900 shadow-md rounded-lg text-center">
-            <Mail className="text-blue-500 mx-auto mb-3" size={40} />
+            <Mail className="text-primary mx-auto mb-3" size={40} />
             <h4 className="font-semibold text-lg">Step 1: Consultation</h4>
             <p className="text-gray-600 dark:text-gray-300 mt-2">
               Understand your business needs & recommend the best plan.
             </p>
           </div>
           <div className="p-6 bg-white dark:bg-gray-900 shadow-md rounded-lg text-center">
-            <Users className="text-blue-500 mx-auto mb-3" size={40} />
+            <Users className="text-primary mx-auto mb-3" size={40} />
             <h4 className="font-semibold text-lg">
               Step 2: Setup & Configuration
             </h4>
@@ -115,7 +115,7 @@ const OfficeSuiteSetup = () => {
             </p>
           </div>
           <div className="p-6 bg-white dark:bg-gray-900 shadow-md rounded-lg text-center">
-            <ShieldCheck className="text-blue-500 mx-auto mb-3" size={40} />
+            <ShieldCheck className="text-primary mx-auto mb-3" size={40} />
             <h4 className="font-semibold text-lg">
               Step 3: Security & Migration
             </h4>
@@ -124,7 +124,7 @@ const OfficeSuiteSetup = () => {
             </p>
           </div>
           <div className="p-6 bg-white dark:bg-gray-900 shadow-md rounded-lg text-center">
-            <CheckCircle className="text-blue-500 mx-auto mb-3" size={40} />
+            <CheckCircle className="text-primary mx-auto mb-3" size={40} />
             <h4 className="font-semibold text-lg">
               Step 4: Training & Support
             </h4>

@@ -22,7 +22,7 @@ const WebsiteDesign = () => {
       <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
         {/* Custom Web Design */}
         <div className="bg-white dark:bg-gray-900 shadow-md rounded-lg p-6 flex flex-col items-center text-center">
-          <Layout className="text-blue-500 mb-4" size={40} />
+          <Layout className="text-primary mb-4" size={40} />
           <h3 className="text-2xl font-semibold text-gray-900 dark:text-white">
             Custom Web Design
           </h3>
@@ -33,7 +33,7 @@ const WebsiteDesign = () => {
 
         {/* UI/UX Excellence */}
         <div className="bg-white dark:bg-gray-900 shadow-md rounded-lg p-6 flex flex-col items-center text-center">
-          <Eye className="text-blue-500 mb-4" size={40} />
+          <Eye className="text-primary mb-4" size={40} />
           <h3 className="text-2xl font-semibold text-gray-900 dark:text-white">
             UI/UX Excellence
           </h3>
@@ -44,7 +44,7 @@ const WebsiteDesign = () => {
 
         {/* Mobile Responsive */}
         <div className="bg-white dark:bg-gray-900 shadow-md rounded-lg p-6 flex flex-col items-center text-center">
-          <Smartphone className="text-blue-500 mb-4" size={40} />
+          <Smartphone className="text-primary mb-4" size={40} />
           <h3 className="text-2xl font-semibold text-gray-900 dark:text-white">
             Mobile Responsive
           </h3>
@@ -56,7 +56,7 @@ const WebsiteDesign = () => {
 
         {/* Brand & Color Strategy */}
         <div className="bg-white dark:bg-gray-900 shadow-md rounded-lg p-6 flex flex-col items-center text-center">
-          <Palette className="text-blue-500 mb-4" size={40} />
+          <Palette className="text-primary mb-4" size={40} />
           <h3 className="text-2xl font-semibold text-gray-900 dark:text-white">
             Brand & Color Strategy
           </h3>
@@ -68,7 +68,7 @@ const WebsiteDesign = () => {
 
         {/* Fast & SEO-Friendly */}
         <div className="bg-white dark:bg-gray-900 shadow-md rounded-lg p-6 flex flex-col items-center text-center">
-          <Rocket className="text-blue-500 mb-4" size={40} />
+          <Rocket className="text-primary mb-4" size={40} />
           <h3 className="text-2xl font-semibold text-gray-900 dark:text-white">
             Fast & SEO-Friendly
           </h3>

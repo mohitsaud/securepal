@@ -45,18 +45,18 @@ const DataMigration = () => {
           </p>
           <ul className="mt-4 space-y-2 text-gray-600 dark:text-gray-400 text-left">
             <li className="flex items-center">
-              <MoveRight className="text-blue-500 mr-2" /> Minimized downtime
+              <MoveRight className="text-primary mr-2" /> Minimized downtime
             </li>
             <li className="flex items-center">
-              <MoveRight className="text-blue-500 mr-2" /> Data integrity &
+              <MoveRight className="text-primary mr-2" /> Data integrity &
               encryption
             </li>
             <li className="flex items-center">
-              <MoveRight className="text-blue-500 mr-2" /> Scalable &
+              <MoveRight className="text-primary mr-2" /> Scalable &
               cost-effective
             </li>
             <li className="flex items-center">
-              <MoveRight className="text-blue-500 mr-2" /> Seamless transition
+              <MoveRight className="text-primary mr-2" /> Seamless transition
             </li>
           </ul>
         </div>
@@ -79,19 +79,19 @@ const DataMigration = () => {
           </p>
           <ul className="mt-4 space-y-2 text-gray-600 dark:text-gray-400 text-left">
             <li className="flex items-center">
-              <Database className="text-blue-500 mr-2" /> Structured &
+              <Database className="text-primary mr-2" /> Structured &
               unstructured data
             </li>
             <li className="flex items-center">
-              <Database className="text-blue-500 mr-2" /> Secure migration
+              <Database className="text-primary mr-2" /> Secure migration
               protocols
             </li>
             <li className="flex items-center">
-              <Database className="text-blue-500 mr-2" /> Validation and
+              <Database className="text-primary mr-2" /> Validation and
               migration planning
             </li>
             <li className="flex items-center">
-              <Database className="text-blue-500 mr-2" /> Cross-platform
+              <Database className="text-primary mr-2" /> Cross-platform
               compatibility
             </li>
           </ul>
@@ -105,28 +105,28 @@ const DataMigration = () => {
         </h2>
         <div className="mt-8 grid md:grid-cols-4 gap-6">
           <div className="p-6 bg-white dark:bg-gray-900 shadow-md rounded-lg text-center">
-            <Upload className="text-blue-500 mx-auto mb-3" size={40} />
+            <Upload className="text-primary mx-auto mb-3" size={40} />
             <h4 className="font-semibold text-lg">Step 1: Assessment</h4>
             <p className="text-gray-600 dark:text-gray-300 mt-2">
               Analyze your data and migration needs.
             </p>
           </div>
           <div className="p-6 bg-white dark:bg-gray-900 shadow-md rounded-lg text-center">
-            <MoveRight className="text-blue-500 mx-auto mb-3" size={40} />
+            <MoveRight className="text-primary mx-auto mb-3" size={40} />
             <h4 className="font-semibold text-lg">Step 2: Planning</h4>
             <p className="text-gray-600 dark:text-gray-300 mt-2">
               Develop a secure and efficient migration strategy.
             </p>
           </div>
           <div className="p-6 bg-white dark:bg-gray-900 shadow-md rounded-lg text-center">
-            <ShieldCheck className="text-blue-500 mx-auto mb-3" size={40} />
+            <ShieldCheck className="text-primary mx-auto mb-3" size={40} />
             <h4 className="font-semibold text-lg">Step 3: Execution</h4>
             <p className="text-gray-600 dark:text-gray-300 mt-2">
               Transfer data with minimal downtime and no data loss.
             </p>
           </div>
           <div className="p-6 bg-white dark:bg-gray-900 shadow-md rounded-lg text-center">
-            <CheckCircle className="text-blue-500 mx-auto mb-3" size={40} />
+            <CheckCircle className="text-primary mx-auto mb-3" size={40} />
             <h4 className="font-semibold text-lg">
               Step 4: Validation & Support
             </h4>

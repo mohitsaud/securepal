@@ -1,5 +1,3 @@
-'use client';
-
 import Image from 'next/image';
 import Link from 'next/link';
 
@@ -8,25 +6,30 @@ interface LogoProps {
   className?: string;
 }
 
+const sizes = {
+  sm: 72,
+  md: 88,
+  lg: 104,
+};
+
 export default function Logo({ size = 'md', className = '' }: LogoProps) {
-  const sizes = {
-    sm: 'w-14 h-14', // 56px
-    md: 'w-20 h-20', // 80px
-    lg: 'w-20 h-20', // 80px
-  };
+  const dimension = sizes[size];
 
   return (
-    <Link href="/" className={` flex items-center ${className}`}>
-      <div className={`relative ${sizes[size]}`}>
-        <Image
-          src="/images/securepal-logo-navy.png"
-          alt="SecurePal"
-          fill
-          priority={size === 'sm'}
-          sizes={size === 'sm' ? '56px' : '80px'}
-          className="object-contain"
-        />
-      </div>
+    <Link
+      href="/"
+      aria-label="SecurePal home"
+      className={`inline-flex shrink-0 items-center ${className}`}
+    >
+      <Image
+        src="/images/securepal-logo-navy.png"
+        alt="SecurePal — Complete IT Solution"
+        width={dimension}
+        height={dimension}
+        priority={size === 'sm'}
+        className="object-contain"
+        style={{ width: dimension, height: dimension }}
+      />
     </Link>
   );
 }

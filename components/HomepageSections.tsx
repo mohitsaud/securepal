@@ -86,11 +86,11 @@ export function AiSolutionsSection() {
   return (
     <section
       id="ai-solutions"
-      className="scroll-mt-24 bg-navy py-20 text-white md:py-28"
+      className="scroll-mt-24 bg-navy py-16 text-white md:py-24"
     >
       <div className="container">
         <div className="mx-auto max-w-3xl text-center">
-          <span className="mb-4 inline-flex rounded-full border border-cyan/25 bg-cyan/10 px-4 py-1.5 text-xs font-bold uppercase tracking-[0.16em] text-cyan">
+          <span className="mb-4 inline-flex rounded-full border border-cyan/25 bg-cyan/10 px-4 py-1.5 text-sm font-semibold text-cyan">
             SecurePal AI
           </span>
           <h2 className="text-3xl font-bold tracking-tight sm:text-4xl md:text-5xl">
@@ -128,7 +128,10 @@ export function AiSolutionsSection() {
             before recommending an approach.
           </p>
           <div className="flex shrink-0 flex-col gap-3 sm:flex-row">
-            <Button asChild className="bg-cyan text-navy hover:bg-cyan/90">
+            <Button
+              asChild
+              className="h-11 bg-cyan text-navy hover:bg-cyan/90"
+            >
               <Link href="/services/ai-solutions">
                 Explore SecurePal AI <ArrowRight className="ml-2 h-4 w-4" />
               </Link>
@@ -136,7 +139,7 @@ export function AiSolutionsSection() {
             <Button
               asChild
               variant="outline"
-              className="border-white/30 bg-transparent text-white hover:bg-white/10 hover:text-white"
+              className="h-11 border-white/30 bg-transparent text-white hover:bg-white/10 hover:text-white"
             >
               <Link href="/contact#enquiry">Discuss an idea</Link>
             </Button>
@@ -151,12 +154,12 @@ export function IndustriesSection() {
   return (
     <section
       id="industries"
-      className="scroll-mt-24 bg-linear-to-b from-white to-slate-50 py-20 md:py-28"
+      className="scroll-mt-24 bg-background py-16 md:py-24"
     >
       <div className="container">
         <div className="grid items-end gap-6 md:grid-cols-[1.15fr_0.85fr] md:gap-12">
           <div>
-            <span className="mb-5 inline-flex items-center gap-2 rounded-full border border-cyan/25 bg-cyan-soft/70 px-4 py-1.5 text-xs font-bold uppercase tracking-[0.16em] text-primary">
+            <span className="mb-5 inline-flex items-center gap-2 rounded-full border border-cyan/25 bg-cyan-soft/70 px-4 py-1.5 text-sm font-semibold text-primary">
               <span className="h-1.5 w-1.5 rounded-full bg-cyan" />
               Industry-aware support
             </span>
@@ -171,17 +174,14 @@ export function IndustriesSection() {
         </div>
 
         <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:mt-14 lg:grid-cols-4">
-          {industries.map(({ icon: Icon, name, examples }, index) => (
+          {industries.map(({ icon: Icon, name, examples }) => (
             <article
               key={name}
-              className="group relative overflow-hidden rounded-3xl border border-slate-200/80 bg-white p-6 shadow-[0_12px_36px_-28px_rgba(16,30,53,0.35)] transition duration-300 hover:-translate-y-1 hover:border-cyan/40 hover:shadow-[0_20px_44px_-28px_rgba(16,30,53,0.32)] sm:p-7"
+              className="group relative overflow-hidden rounded-2xl border border-slate-200/80 bg-white p-6 transition-colors duration-200 hover:border-cyan/50 sm:p-7"
             >
-              <div className="flex items-start justify-between">
+              <div>
                 <span className="inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-cyan-soft text-primary transition-colors duration-300 group-hover:bg-cyan group-hover:text-navy">
                   <Icon aria-hidden="true" className="h-6 w-6" />
-                </span>
-                <span className="font-mono text-xs font-semibold tracking-widest text-slate-300">
-                  0{index + 1}
                 </span>
               </div>
               <h3 className="mt-7 font-heading text-lg font-bold leading-snug text-navy">
@@ -190,7 +190,7 @@ export function IndustriesSection() {
               <p className="mt-3 text-sm leading-6 text-muted-foreground">
                 {examples}
               </p>
-              <div className="mt-6 h-px w-full bg-gradient-to-r from-cyan/50 via-slate-200 to-transparent" />
+              <div className="mt-6 border-t border-border" />
             </article>
           ))}
         </div>
@@ -201,7 +201,7 @@ export function IndustriesSection() {
           </p>
           <Button
             asChild
-            className="shrink-0 bg-navy text-white hover:bg-navy-soft"
+            className="h-11 shrink-0 bg-navy text-white hover:bg-navy-soft"
           >
             <Link href="/contact#enquiry">
               Talk through your needs <ArrowRight className="ml-2 h-4 w-4" />
@@ -236,10 +236,10 @@ export function HowWeWorkSection() {
   ];
 
   return (
-    <section className="bg-secondary py-20 md:py-28">
+    <section className="bg-secondary py-16 md:py-24">
       <div className="container">
         <div className="mx-auto max-w-3xl text-center">
-          <span className="mb-4 inline-flex rounded-full border border-cyan/20 bg-cyan-soft px-4 py-1.5 text-xs font-bold uppercase tracking-[0.16em] text-primary">
+          <span className="mb-4 inline-flex rounded-full border border-cyan/20 bg-cyan-soft px-4 py-1.5 text-sm font-semibold text-primary">
             A clear way forward
           </span>
           <h2 className="text-3xl font-bold tracking-tight text-navy md:text-5xl">
@@ -272,11 +272,11 @@ export function HowWeWorkSection() {
 
 export function SupportingServicesSection() {
   return (
-    <section className="bg-background py-16 md:py-20">
+    <section className="bg-background py-16 md:py-24">
       <div className="container">
         <div className="grid gap-8 md:grid-cols-[0.8fr_1.2fr] md:items-center">
           <div>
-            <span className="mb-4 inline-flex rounded-full border border-cyan/20 bg-cyan-soft px-4 py-1.5 text-xs font-bold uppercase tracking-[0.16em] text-primary">
+            <span className="mb-4 inline-flex rounded-full border border-cyan/20 bg-cyan-soft px-4 py-1.5 text-sm font-semibold text-primary">
               Beyond day-to-day support
             </span>
             <h2 className="text-3xl font-bold tracking-tight text-navy">

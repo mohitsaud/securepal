@@ -17,7 +17,7 @@ const TestimonialCarousel = () => {
           viewport={{ once: true, amount: 0.3 }}
           transition={{ duration: shouldReduceMotion ? 0 : 0.55 }}
         >
-          <span className="mb-4 inline-flex rounded-full border border-cyan/25 bg-cyan/10 px-4 py-1.5 text-xs font-bold uppercase tracking-[0.16em] text-primary">
+          <span className="mb-4 inline-flex rounded-full border border-cyan/25 bg-cyan/10 px-4 py-1.5 text-sm font-semibold text-primary">
             Client stories
           </span>
           <h2 className="text-3xl font-bold tracking-tight text-navy md:text-5xl">

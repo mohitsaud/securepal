@@ -13,7 +13,7 @@ const BlogCarousel = () => {
   if (!featuredPost) return null;
 
   return (
-    <section className="relative overflow-hidden bg-background py-20 md:py-28">
+    <section className="relative overflow-hidden bg-background py-16 md:py-24">
       <div className="container">
         <motion.div
           className="mb-10 flex flex-col gap-5 sm:mb-12 sm:flex-row sm:items-end sm:justify-between"
@@ -23,7 +23,7 @@ const BlogCarousel = () => {
           transition={{ duration: shouldReduceMotion ? 0 : 0.5 }}
         >
           <div className="max-w-2xl">
-            <span className="mb-4 inline-flex rounded-full border border-cyan/20 bg-cyan-soft px-4 py-1.5 text-xs font-bold uppercase tracking-[0.16em] text-primary">
+            <span className="mb-4 inline-flex rounded-full border border-cyan/20 bg-cyan-soft px-4 py-1.5 text-sm font-semibold text-primary">
               Insights
             </span>
             <h2 className="text-3xl font-bold tracking-tight text-navy md:text-5xl">
@@ -36,7 +36,7 @@ const BlogCarousel = () => {
           </div>
           <Link
             href="/blog"
-            className="inline-flex w-fit items-center gap-2 font-semibold text-primary transition-colors hover:text-brand-hover"
+            className="inline-flex min-h-11 w-fit items-center gap-2 font-semibold text-primary transition-colors hover:text-brand-hover"
           >
             Visit the blog <ArrowRight className="h-4 w-4" />
           </Link>
@@ -62,12 +62,12 @@ const BlogCarousel = () => {
                 sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 55vw"
                 className="object-cover transition-transform duration-700 group-hover:scale-105"
               />
-              <span className="absolute left-4 top-4 rounded-full border border-white/20 bg-navy/80 px-3 py-1 text-xs font-bold uppercase tracking-wider text-white backdrop-blur-sm">
+              <span className="absolute left-4 top-4 rounded-full border border-white/20 bg-navy/80 px-3 py-1 text-xs font-semibold text-white backdrop-blur-sm">
                 Featured
               </span>
             </Link>
             <div className="flex flex-col justify-center p-6 sm:p-7 lg:p-8">
-              <p className="text-xs font-bold uppercase tracking-wider text-primary">
+              <p className="text-xs font-semibold text-primary">
                 {featuredPost.date}
               </p>
               <h3 className="mt-3 font-heading text-2xl font-bold leading-tight tracking-tight text-navy sm:text-3xl">
@@ -78,7 +78,7 @@ const BlogCarousel = () => {
               </p>
               <Link
                 href={`/blog/${featuredPost.slug}`}
-                className="mt-7 inline-flex w-fit items-center gap-2 font-bold text-primary transition-colors hover:text-brand-hover"
+                className="mt-5 inline-flex min-h-11 w-fit items-center gap-2 font-semibold text-sm text-primary transition-colors hover:text-brand-hover sm:mt-7"
               >
                 Read featured article <ArrowRight className="h-4 w-4" />
               </Link>
@@ -112,7 +112,7 @@ const BlogCarousel = () => {
                   />
                 </Link>
                 <div className="flex min-w-0 flex-1 flex-col justify-center p-4 sm:p-5">
-                  <p className="text-[11px] font-bold uppercase tracking-wider text-primary">
+                  <p className="text-xs font-semibold text-primary">
                     {post.date}
                   </p>
                   <h3 className="mt-1 line-clamp-2 font-heading text-base font-bold leading-snug tracking-tight text-navy sm:text-lg">
@@ -120,7 +120,7 @@ const BlogCarousel = () => {
                   </h3>
                   <Link
                     href={`/blog/${post.slug}`}
-                    className="mt-2 inline-flex w-fit items-center gap-1.5 text-xs font-bold text-primary transition-colors hover:text-brand-hover"
+                    className="mt-1 inline-flex min-h-11 w-fit items-center gap-1.5 text-sm font-semibold text-primary transition-colors hover:text-brand-hover sm:mt-2"
                   >
                     Read article <ArrowRight className="h-3.5 w-3.5" />
                   </Link>

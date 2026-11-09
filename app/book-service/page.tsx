@@ -9,53 +9,53 @@ export const metadata: Metadata = {
 
 export default function BookServicePage() {
   return (
-    <div className="min-h-screen bg-gradient-to-b from-white to-gray-50">
+    <div className="min-h-screen bg-background">
       <div className="container mx-auto px-4 py-12">
         <div className="max-w-4xl mx-auto">
           {/* Header Section */}
           <div className="text-center mb-12">
-            <h1 className="text-4xl font-bold text-gray-900 mb-4">Book Your Service</h1>
-            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+            <h1 className="mb-4 text-4xl font-bold text-navy">Book Your Service</h1>
+            <p className="mx-auto max-w-2xl text-lg text-muted-foreground">
               Schedule your security service with our expert team. We'll get back to you within 24 hours to confirm your booking and discuss your requirements in detail.
             </p>
           </div>
 
           {/* Features Section */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
-            <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-100">
+            <div className="rounded-lg border border-border bg-white p-6 shadow-sm">
               <div className="flex items-center mb-4">
-                <Calendar className="h-6 w-6 text-blue-600 mr-3" />
-                <h3 className="text-lg font-semibold">Flexible Scheduling</h3>
+                <Calendar className="mr-3 h-6 w-6 text-primary" />
+                <h3 className="text-lg font-semibold text-navy">Flexible Scheduling</h3>
               </div>
-              <p className="text-gray-600">Choose a date and time that works best for you.</p>
+              <p className="text-muted-foreground">Choose a date and time that works best for you.</p>
             </div>
-            <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-100">
+            <div className="rounded-lg border border-border bg-white p-6 shadow-sm">
               <div className="flex items-center mb-4">
-                <Clock className="h-6 w-6 text-blue-600 mr-3" />
-                <h3 className="text-lg font-semibold">Quick Response</h3>
+                <Clock className="mr-3 h-6 w-6 text-primary" />
+                <h3 className="text-lg font-semibold text-navy">Quick Response</h3>
               </div>
-              <p className="text-gray-600">We'll confirm your booking within 24 hours.</p>
+              <p className="text-muted-foreground">We'll confirm your booking within 24 hours.</p>
             </div>
-            <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-100">
+            <div className="rounded-lg border border-border bg-white p-6 shadow-sm">
               <div className="flex items-center mb-4">
-                <Phone className="h-6 w-6 text-blue-600 mr-3" />
-                <h3 className="text-lg font-semibold">Expert Support</h3>
+                <Phone className="mr-3 h-6 w-6 text-primary" />
+                <h3 className="text-lg font-semibold text-navy">Expert Support</h3>
               </div>
-              <p className="text-gray-600">Our team will guide you through the entire process.</p>
+              <p className="text-muted-foreground">Our team will guide you through the entire process.</p>
             </div>
           </div>
 
           {/* Form Section */}
-          <div className="bg-white rounded-xl shadow-lg p-8 border border-gray-100">
-            <h2 className="text-2xl font-semibold text-gray-900 mb-6">Service Booking Form</h2>
+          <div className="rounded-xl border border-border bg-white p-8 shadow-lg">
+            <h2 className="mb-6 text-2xl font-semibold text-navy">Service Booking Form</h2>
             <BookServiceForm />
           </div>
 
           {/* Additional Information */}
           <div className="mt-12 text-center">
-            <p className="text-gray-600">
+            <p className="text-muted-foreground">
               Need immediate assistance? Call us at{" "}
-              <a href="tel:(02) 9051 0054" className="text-blue-600 font-semibold hover:text-blue-700">
+              <a href="tel:(02) 9051 0054" className="font-semibold text-primary hover:text-brand-hover">
                 (02) 9051 0054
               </a>
             </p>

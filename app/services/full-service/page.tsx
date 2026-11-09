@@ -137,11 +137,11 @@ const FullServicePackage = () => {
                 {feature === 'Advanced Security Solutions' && (
                   <ul className="ml-8 mt-2 space-y-2 text-gray-600 dark:text-gray-300">
                     <li className="flex items-center space-x-2">
-                      <ShieldCheck className="h-5 w-5 text-blue-500" />
+                      <ShieldCheck className="h-5 w-5 text-primary" />
                       <span>Web Security</span>
                     </li>
                     <li className="flex items-center space-x-2">
-                      <ShieldCheck className="h-5 w-5 text-blue-500" />
+                      <ShieldCheck className="h-5 w-5 text-primary" />
                       <span>Email Security</span>
                     </li>
                   </ul>

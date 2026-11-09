@@ -138,10 +138,10 @@ const ContactPage = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-12"
+          className="mb-12 max-w-3xl"
         >
-          <p className="mb-3 text-sm font-bold uppercase tracking-[0.16em] text-primary">
-            Managed IT · Cybersecurity · Microsoft 365 · AI
+          <p className="mb-3 text-sm font-semibold text-primary">
+            Managed IT, cybersecurity, cloud and automation
           </p>
           <h1 className="mb-4 text-4xl font-bold tracking-tight text-navy sm:text-5xl">
             Let’s make your business technology work better

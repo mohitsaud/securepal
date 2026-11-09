@@ -90,21 +90,21 @@ const CustomQuote = () => {
   };
 
   return (
-    <section className="min-h-screen flex flex-col items-center justify-center px-6 py-20 bg-[#F1F5F9]">
+    <section className="flex min-h-screen flex-col items-center justify-center bg-background px-6 py-20">
       {/* Header */}
       <div className="text-center mb-10">
-        <h2 className="text-4xl font-bold text-[#1D4ED8]">
+        <h2 className="text-4xl font-bold text-navy">
           Request a Custom Quote
         </h2>
-        <p className="mt-2 text-lg text-[#1E293B] max-w-2xl mx-auto">
+        <p className="mx-auto mt-2 max-w-2xl text-lg text-muted-foreground">
           Fill out the form below, and we’ll get back to you with a tailored
           security solution.
         </p>
       </div>
 
       {/* Form Card */}
-      <Card className="w-full max-w-3xl bg-white shadow-lg border border-[#CBD5E1] rounded-lg">
-        <CardHeader className="py-5 border-b border-[#CBD5E1] bg-[#1D4ED8] text-white">
+      <Card className="w-full max-w-3xl rounded-lg border border-border bg-white shadow-lg">
+        <CardHeader className="border-b border-white/10 bg-navy py-5 text-white">
           <CardTitle className="text-xl font-semibold text-center">
             Get Your Quote
           </CardTitle>
@@ -120,7 +120,7 @@ const CustomQuote = () => {
               ].map((field) => (
                 <div key={field.name}>
                   <label
-                    className="block text-[#1E293B] font-medium mb-2"
+                    className="mb-2 block font-medium text-foreground"
                     htmlFor={field.name}
                   >
                     {field.label}
@@ -132,7 +132,7 @@ const CustomQuote = () => {
                     value={formData[field.name as keyof typeof formData]}
                     onChange={handleChange}
                     required={field.name !== 'company'}
-                    className="w-full border border-[#CBD5E1] focus:border-[#3B82F6] focus:ring-[#3B82F6] transition rounded-md"
+                    className="w-full rounded-md border border-input transition focus:border-primary focus:ring-ring"
                   />
                 </div>
               ))}
@@ -140,7 +140,7 @@ const CustomQuote = () => {
 
             <div>
               <label
-                className="block text-[#1E293B] font-medium mb-2"
+                className="mb-2 block font-medium text-foreground"
                 htmlFor="securityNeeds"
               >
                 Describe Your Security Needs
@@ -152,7 +152,7 @@ const CustomQuote = () => {
                 value={formData.securityNeeds}
                 onChange={handleChange}
                 required
-                className="w-full border border-[#CBD5E1] focus:border-[#3B82F6] focus:ring-[#3B82F6] transition rounded-md"
+                className="w-full rounded-md border border-input transition focus:border-primary focus:ring-ring"
               />
             </div>
 
@@ -161,7 +161,7 @@ const CustomQuote = () => {
               <Button
                 type="submit"
                 disabled={submitting}
-                className="w-3/4 md:w-1/2 bg-[#3B82F6] hover:bg-[#1D4ED8] text-white text-lg py-3 rounded-md transition-all"
+                className="w-3/4 rounded-md bg-primary py-3 text-lg text-white transition-colors hover:bg-brand-hover md:w-1/2"
               >
                 {submitting ? 'Submitting...' : 'Request Quote'}
               </Button>

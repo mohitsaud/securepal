@@ -93,8 +93,8 @@ const PricingPage = () => {
   return (
     <section className="min-h-screen bg-background px-4 py-16 sm:py-20">
       {/* Page Title */}
-      <div className="container mb-12 text-center">
-        <p className="text-sm font-bold uppercase tracking-[0.16em] text-primary">
+      <div className="container mb-12 max-w-4xl">
+        <p className="text-sm font-semibold text-primary">
           Clear scope. Tailored pricing.
         </p>
         <h1 className="mt-4 text-4xl font-bold tracking-tight text-navy sm:text-5xl">
@@ -168,7 +168,7 @@ const PricingPage = () => {
 
       <div className="container mt-16">
         <div className="mx-auto max-w-3xl text-center">
-          <p className="text-sm font-bold uppercase tracking-[0.16em] text-primary">
+          <p className="text-sm font-semibold text-primary">
             SecurePal AI
           </p>
           <h2 className="mt-3 text-3xl font-bold text-navy">

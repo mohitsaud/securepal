@@ -12,7 +12,6 @@ import {
 
 const services = [
   {
-    number: '01',
     title: 'Managed IT',
     description:
       'Keep your people moving with dependable support, well-managed devices, and a clear plan for what comes next.',
@@ -23,7 +22,6 @@ const services = [
     theme: 'navy',
   },
   {
-    number: '02',
     title: 'Cybersecurity',
     description:
       'Protect the accounts, devices, and information your business depends on with security that fits the way you work.',
@@ -34,7 +32,6 @@ const services = [
     theme: 'light',
   },
   {
-    number: '03',
     title: 'Cloud & Microsoft 365',
     description:
       'Make collaboration simpler with a carefully managed cloud environment, from migration through everyday support.',
@@ -45,7 +42,6 @@ const services = [
     theme: 'light',
   },
   {
-    number: '04',
     title: 'AI & Automation',
     description:
       'Find practical opportunities to streamline enquiries and repetitive tasks—with feasibility and oversight built in.',
@@ -61,11 +57,7 @@ export default function ServicesShowcase() {
   const shouldReduceMotion = useReducedMotion();
 
   return (
-    <section className="relative overflow-hidden bg-[#f4f8fb] py-20 sm:py-24 lg:py-28">
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute -right-36 top-0 h-96 w-96 rounded-full bg-cyan/10 blur-3xl"
-      />
+    <section className="relative overflow-hidden bg-background py-20 sm:py-24 lg:py-28">
       <div className="container relative">
         <motion.div
           className="mb-12 grid gap-7 lg:mb-14 lg:grid-cols-[1.15fr_0.85fr] lg:items-end"
@@ -75,7 +67,7 @@ export default function ServicesShowcase() {
           transition={{ duration: shouldReduceMotion ? 0 : 0.4 }}
         >
           <div>
-            <span className="mb-5 inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.18em] text-primary">
+            <span className="mb-5 inline-flex items-center gap-2 text-sm font-semibold text-primary">
               <span className="h-px w-7 bg-cyan" />
               One partner. Four connected services.
             </span>
@@ -103,7 +95,6 @@ export default function ServicesShowcase() {
           {services.map(
             (
               {
-                number,
                 title,
                 description,
                 icon: Icon,
@@ -115,7 +106,7 @@ export default function ServicesShowcase() {
               index
             ) => (
               <motion.article
-                key={number}
+                key={title}
                 initial={shouldReduceMotion ? false : { opacity: 0, y: 16 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, amount: 0.2 }}
@@ -123,21 +114,12 @@ export default function ServicesShowcase() {
                   duration: shouldReduceMotion ? 0 : 0.4,
                   delay: shouldReduceMotion ? 0 : index * 0.05,
                 }}
-                className={`group relative flex min-h-[310px] flex-col overflow-hidden rounded-[1.75rem] border p-6 transition duration-300 hover:-translate-y-1 sm:p-8 lg:min-h-[330px] ${layout} ${
+                className={`group relative flex min-h-[310px] flex-col overflow-hidden rounded-2xl border p-6 transition-colors duration-200 sm:p-8 lg:min-h-[330px] ${layout} ${
                   theme === 'navy'
                     ? 'border-navy bg-navy text-white shadow-xl shadow-navy/10'
                     : 'border-white bg-white text-navy shadow-sm shadow-navy/5 hover:border-primary/20 hover:shadow-xl hover:shadow-navy/10'
                 }`}
               >
-                {theme === 'navy' && (
-                  <div
-                    aria-hidden="true"
-                    className="pointer-events-none absolute -right-16 -top-20 h-64 w-64 rounded-full border border-white/[0.07] sm:-right-8"
-                  >
-                    <div className="absolute inset-7 rounded-full border border-white/[0.07]" />
-                    <div className="absolute inset-14 rounded-full border border-white/[0.07]" />
-                  </div>
-                )}
                 <div className="relative flex items-start justify-between gap-4">
                   <span
                     className={`inline-flex h-12 w-12 items-center justify-center rounded-2xl ${
@@ -151,13 +133,6 @@ export default function ServicesShowcase() {
                       className="h-[1.35rem] w-[1.35rem]"
                       strokeWidth={1.8}
                     />
-                  </span>
-                  <span
-                    className={`font-heading text-xs font-bold tracking-[0.16em] ${
-                      theme === 'navy' ? 'text-white/45' : 'text-slate-400'
-                    }`}
-                  >
-                    {number} <span className="px-1">/</span> 04
                   </span>
                 </div>
                 <div className="relative mt-9">

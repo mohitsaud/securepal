@@ -18,14 +18,14 @@ export default function UpgradeSection() {
       };
 
   return (
-    <section className="bg-secondary py-16 sm:py-20">
+    <section className="bg-secondary py-16 md:py-24">
       <div className="container">
         <motion.div
           {...reveal}
           className="grid overflow-hidden rounded-3xl bg-navy shadow-xl shadow-navy/10 lg:grid-cols-[1.05fr_0.95fr]"
         >
           <div className="p-7 sm:p-10 lg:p-12">
-            <span className="mb-5 inline-flex items-center gap-2 rounded-full border border-cyan/25 bg-cyan/10 px-4 py-1.5 text-xs font-bold uppercase tracking-[0.14em] text-cyan">
+            <span className="mb-5 inline-flex items-center gap-2 rounded-full border border-cyan/25 bg-cyan/10 px-4 py-1.5 text-sm font-semibold text-cyan">
               <ShieldCheck className="h-4 w-4" />
               Windows migration support
             </span>
@@ -42,7 +42,7 @@ export default function UpgradeSection() {
               <Button
                 asChild
                 size="lg"
-                className="bg-cyan text-navy hover:bg-cyan/90"
+                className="h-11 bg-cyan text-navy hover:bg-cyan/90"
               >
                 <Link href="/contact">
                   Discuss an upgrade plan

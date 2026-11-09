@@ -42,7 +42,7 @@ export default function WhatsAppButton() {
       <Button
         onClick={() => setIsOpen(!isOpen)}
         size="icon"
-        className="h-12 w-12 cursor-pointer rounded-full bg-green-500 text-white shadow-lg hover:bg-opacity-90 sm:h-14 sm:w-14"
+        className="h-12 w-12 cursor-pointer rounded-full bg-primary text-white shadow-lg hover:bg-brand-hover sm:h-14 sm:w-14"
       >
         {isOpen ? (
           <X className="h-7 w-7 sm:h-8 sm:w-8" />

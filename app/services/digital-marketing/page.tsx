@@ -30,7 +30,7 @@ const DigitalMarketing = () => {
       <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
         {/* SEO Optimization */}
         <div className="bg-white dark:bg-gray-900 shadow-md rounded-lg p-6 flex flex-col items-center text-center">
-          <Search className="text-blue-500 mb-4" size={40} />
+          <Search className="text-primary mb-4" size={40} />
           <h3 className="text-2xl font-semibold text-gray-900 dark:text-white">
             SEO Optimization
           </h3>
@@ -42,7 +42,7 @@ const DigitalMarketing = () => {
 
         {/* Social Media Marketing */}
         <div className="bg-white dark:bg-gray-900 shadow-md rounded-lg p-6 flex flex-col items-center text-center">
-          <Users className="text-blue-500 mb-4" size={40} />
+          <Users className="text-primary mb-4" size={40} />
           <h3 className="text-2xl font-semibold text-gray-900 dark:text-white">
             Social Media Marketing
           </h3>
@@ -53,7 +53,7 @@ const DigitalMarketing = () => {
 
         {/* PPC Advertising */}
         <div className="bg-white dark:bg-gray-900 shadow-md rounded-lg p-6 flex flex-col items-center text-center">
-          <BarChart className="text-blue-500 mb-4" size={40} />
+          <BarChart className="text-primary mb-4" size={40} />
           <h3 className="text-2xl font-semibold text-gray-900 dark:text-white">
             PPC Advertising
           </h3>
@@ -64,7 +64,7 @@ const DigitalMarketing = () => {
 
         {/* Content Marketing */}
         <div className="bg-white dark:bg-gray-900 shadow-md rounded-lg p-6 flex flex-col items-center text-center">
-          <Megaphone className="text-blue-500 mb-4" size={40} />
+          <Megaphone className="text-primary mb-4" size={40} />
           <h3 className="text-2xl font-semibold text-gray-900 dark:text-white">
             Content Marketing
           </h3>
@@ -76,7 +76,7 @@ const DigitalMarketing = () => {
 
         {/* Email Marketing */}
         <div className="bg-white dark:bg-gray-900 shadow-md rounded-lg p-6 flex flex-col items-center text-center">
-          <Globe className="text-blue-500 mb-4" size={40} />
+          <Globe className="text-primary mb-4" size={40} />
           <h3 className="text-2xl font-semibold text-gray-900 dark:text-white">
             Email Marketing
           </h3>
