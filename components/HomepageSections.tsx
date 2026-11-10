@@ -12,6 +12,7 @@ import {
   Workflow,
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import AiDemonstrations from '@/components/AiDemonstrations';
 
 const aiSolutions = [
   {
@@ -43,24 +44,28 @@ const aiSolutions = [
 const industries = [
   {
     icon: BriefcaseBusiness,
-    name: 'Professional services',
+    name: 'Accounting firms',
+    href: '/industries/accounting-firms',
     examples:
-      'Client enquiries, document collection, and appointment workflows.',
+      'Client documents, cloud accounting systems, and recurring admin.',
   },
   {
     icon: Building2,
-    name: 'Property and finance',
-    examples: 'Lead capture, booking requests, and customer follow-ups.',
+    name: 'Mortgage brokers',
+    href: '/industries/mortgage-brokers',
+    examples: 'Lead capture, customer documents, and appointment workflows.',
   },
   {
     icon: ClipboardList,
-    name: 'Education and consulting',
-    examples: 'Course enquiries, information requests, and reminders.',
+    name: 'Conveyancers',
+    href: '/industries/conveyancers',
+    examples: 'Client intake, document checklists, and matter enquiries.',
   },
   {
     icon: Network,
-    name: 'Trades and hospitality',
-    examples: 'Missed-call follow-up, service enquiries, and booking requests.',
+    name: 'Retail and hospitality',
+    href: '/industries/retail-hospitality',
+    examples: 'Business systems, customer questions, and booking requests.',
   },
 ];
 
@@ -121,6 +126,8 @@ export function AiSolutionsSection() {
           ))}
         </div>
 
+        <AiDemonstrations />
+
         <div className="mx-auto mt-8 flex max-w-4xl flex-col items-center justify-between gap-5 rounded-2xl border border-white/10 bg-white/[0.03] p-6 text-center sm:flex-row sm:text-left">
           <p className="max-w-2xl text-sm leading-6 text-slate-300">
             Examples are a starting point, not a promise of availability. We’ll
@@ -174,7 +181,7 @@ export function IndustriesSection() {
         </div>
 
         <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:mt-14 lg:grid-cols-4">
-          {industries.map(({ icon: Icon, name, examples }) => (
+          {industries.map(({ icon: Icon, name, href, examples }) => (
             <article
               key={name}
               className="group relative overflow-hidden rounded-2xl border border-slate-200/80 bg-white p-6 transition-colors duration-200 hover:border-cyan/50 sm:p-7"
@@ -190,7 +197,13 @@ export function IndustriesSection() {
               <p className="mt-3 text-sm leading-6 text-muted-foreground">
                 {examples}
               </p>
-              <div className="mt-6 border-t border-border" />
+              <Link
+                href={href}
+                className="mt-5 inline-flex min-h-11 items-center gap-2 text-sm font-semibold text-primary hover:text-brand-hover"
+              >
+                Explore {name.toLowerCase()}
+                <ArrowRight aria-hidden="true" className="h-4 w-4" />
+              </Link>
             </article>
           ))}
         </div>
@@ -203,8 +216,8 @@ export function IndustriesSection() {
             asChild
             className="h-11 shrink-0 bg-navy text-white hover:bg-navy-soft"
           >
-            <Link href="/contact#enquiry">
-              Talk through your needs <ArrowRight className="ml-2 h-4 w-4" />
+            <Link href="/industries">
+              Explore all industries <ArrowRight className="ml-2 h-4 w-4" />
             </Link>
           </Button>
         </div>

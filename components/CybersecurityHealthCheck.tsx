@@ -10,6 +10,7 @@ import {
   TriangleAlert,
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { trackConversion } from '@/lib/analytics';
 
 const checks = [
   {
@@ -86,6 +87,9 @@ export default function CybersecurityHealthCheck() {
         next.delete(index);
       } else {
         next.add(index);
+        if (next.size === checks.length) {
+          trackConversion('cyber_health_check_complete');
+        }
       }
       return next;
     });

@@ -6,6 +6,8 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Spinner } from '@/components/ui/spinner';
+import { trackConversion } from '@/lib/analytics';
 
 const CustomQuote = () => {
   const [formData, setFormData] = useState({
@@ -38,6 +40,9 @@ const CustomQuote = () => {
       const data = await response.json();
 
       if (response.ok) {
+        trackConversion('quote_request_success', {
+          form_location: 'packages',
+        });
         toast.success('Quote request submitted successfully!', {
           duration: 5000, // Adjust the duration as needed (in milliseconds)
           position: 'top-right', // Adjust the position as needed
@@ -110,7 +115,11 @@ const CustomQuote = () => {
           </CardTitle>
         </CardHeader>
         <CardContent className="p-8">
-          <form onSubmit={handleSubmit} className="space-y-6">
+          <form
+            onSubmit={handleSubmit}
+            className="space-y-6"
+            aria-busy={submitting}
+          >
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               {[
                 { name: 'fullName', label: 'Full Name', type: 'text' },
@@ -161,9 +170,17 @@ const CustomQuote = () => {
               <Button
                 type="submit"
                 disabled={submitting}
+                aria-busy={submitting}
                 className="w-3/4 rounded-md bg-primary py-3 text-lg text-white transition-colors hover:bg-brand-hover md:w-1/2"
               >
-                {submitting ? 'Submitting...' : 'Request Quote'}
+                {submitting ? (
+                  <span className="inline-flex items-center gap-2" role="status">
+                    <Spinner />
+                    Submitting...
+                  </span>
+                ) : (
+                  'Request Quote'
+                )}
               </Button>
             </div>
           </form>

@@ -7,6 +7,8 @@ import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import Link from 'next/link';
+import { Spinner } from '@/components/ui/spinner';
+import { trackConversion } from '@/lib/analytics';
 
 const PricingPage = () => {
   const [formData, setFormData] = useState({
@@ -39,6 +41,7 @@ const PricingPage = () => {
       const data = await response.json();
 
       if (response.ok) {
+        trackConversion('quote_request_success', { form_location: 'pricing' });
         toast.success('Quote request submitted successfully!', {
           duration: 5000, // Adjust the duration as needed (in milliseconds)
           position: 'top-right', // Adjust the position as needed
@@ -186,16 +189,31 @@ const PricingPage = () => {
               name: 'AI Receptionist',
               description:
                 'Assess call handling, enquiry capture, and appointment workflows.',
+              scope: [
+                'Setup: agreed call flows, business hours, and escalation procedures.',
+                'Proposal confirms phone lines, call allowance, integrations, and follow-up channels.',
+                'Management, support, overage, and third-party charges are agreed before work begins.',
+              ],
             },
             {
               name: 'AI Business Automation',
               description:
                 'Identify suitable repetitive tasks and how they could connect to your systems.',
+              scope: [
+                'Setup: selected workflows, approvals, and connected systems.',
+                'Proposal confirms supported users, integrations, and any usage limits.',
+                'Management, support, third-party charges, and future changes are scoped in writing.',
+              ],
             },
             {
               name: 'Custom AI Solutions',
               description:
                 'Explore a tailored assistant or integration after technical and privacy review.',
+              scope: [
+                'Setup: discovery, design, implementation, and agreed testing.',
+                'Proposal confirms supported users, integrations, and expected usage.',
+                'Ongoing management, support, third-party costs, and customisation are agreed in writing.',
+              ],
             },
           ].map((offering) => (
             <Card key={offering.name} className="border-border">
@@ -208,6 +226,11 @@ const PricingPage = () => {
                 <p className="text-sm leading-6 text-muted-foreground">
                   {offering.description}
                 </p>
+                <ul className="mt-4 space-y-2 border-t border-border pt-4 text-sm leading-6 text-muted-foreground">
+                  {offering.scope.map((item) => (
+                    <li key={item}>{item}</li>
+                  ))}
+                </ul>
               </CardContent>
             </Card>
           ))}
@@ -258,7 +281,11 @@ const PricingPage = () => {
           </CardTitle>
         </CardHeader>
         <CardContent className="p-8">
-          <form onSubmit={handleSubmit} className="space-y-6">
+          <form
+            onSubmit={handleSubmit}
+            className="space-y-6"
+            aria-busy={submitting}
+          >
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               {[
                 { name: 'fullName', label: 'Full Name', type: 'text' },
@@ -309,9 +336,17 @@ const PricingPage = () => {
               <Button
                 type="submit"
                 disabled={submitting}
+                aria-busy={submitting}
                 className="w-3/4 text-lg md:w-1/2"
               >
-                {submitting ? 'Submitting...' : 'Request Quote'}
+                {submitting ? (
+                  <span className="inline-flex items-center gap-2" role="status">
+                    <Spinner />
+                    Submitting...
+                  </span>
+                ) : (
+                  'Request Quote'
+                )}
               </Button>
             </div>
           </form>

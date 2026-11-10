@@ -18,6 +18,7 @@ import Logo from '@/components/Logo';
 import { usePathname } from 'next/navigation';
 
 import { contactNumber } from '@/constants/phone';
+import { trackConversion } from '@/lib/analytics';
 
 const serviceNavigation = [
   { name: 'Managed IT Support', href: '/services/it-support' },
@@ -34,8 +35,8 @@ const serviceNavigation = [
 
 const primaryNavigation = [
   { name: 'Home', href: '/' },
-  { name: 'Industries', href: '/#industries' },
-  { name: 'Case Studies', href: '/testimonials' },
+  { name: 'Industries', href: '/industries' },
+  { name: 'Client Stories', href: '/testimonials' },
   { name: 'Pricing', href: '/pricing' },
   { name: 'Resources', href: '/blog' },
   { name: 'About Us', href: '/about' },
@@ -214,7 +215,12 @@ export default function Navbar() {
             variant="secondary"
             className="whitespace-nowrap bg-cyan text-navy shadow-sm hover:bg-cyan/90 hover:text-navy"
           >
-            <Link href="/contact#enquiry">Book a consultation</Link>
+            <Link
+              href="/contact#enquiry"
+              onClick={() => trackConversion('consultation_click')}
+            >
+              Book a Free Consultation
+            </Link>
           </Button>
         </div>
 
@@ -222,6 +228,7 @@ export default function Navbar() {
           <a
             href={`tel:${phoneNumber}`}
             aria-label={`Call SecurePal at ${phoneNumber}`}
+            onClick={() => trackConversion('phone_click')}
             className="flex h-10 w-10 items-center justify-center rounded-full border border-white/15 bg-white/10 text-white transition-colors hover:bg-white/20"
           >
             <Phone aria-hidden="true" className="h-4 w-4" />

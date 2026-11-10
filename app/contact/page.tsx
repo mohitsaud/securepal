@@ -12,6 +12,8 @@ import {
 } from 'react-icons/fa';
 import { toast } from 'sonner';
 import { contactNumber } from '@/constants/phone';
+import { Spinner } from '@/components/ui/spinner';
+import { trackConversion } from '@/lib/analytics';
 
 interface FormData {
   fullName: string;
@@ -48,8 +50,8 @@ const ContactPage = () => {
   });
 
   const handleSubmit = async (e: React.FormEvent) => {
-    setSubmitting(true);
     e.preventDefault();
+    setSubmitting(true);
     try {
       const response = await fetch('/api/contact', {
         method: 'POST',
@@ -62,6 +64,7 @@ const ContactPage = () => {
       const data = await response.json();
 
       if (response.ok) {
+        trackConversion('contact_enquiry_success');
         toast.success(
           'Thanks — your enquiry has been sent to SecurePal.',
           {
@@ -234,7 +237,11 @@ const ContactPage = () => {
               Share a few details so we can prepare. This is an initial
               discussion, not a formal security audit or certification.
             </p>
-            <form onSubmit={handleSubmit} className="space-y-5">
+            <form
+              onSubmit={handleSubmit}
+              className="space-y-5"
+              aria-busy={submitting}
+            >
               <div className="grid gap-5 sm:grid-cols-2">
                 {[
                   { name: 'fullName', label: 'Your name', type: 'text' },
@@ -456,9 +463,18 @@ const ContactPage = () => {
                 type="submit"
                 className="flex w-full items-center justify-center gap-2 rounded-xl bg-primary py-4 font-semibold text-white transition-colors hover:bg-primary/90 disabled:cursor-not-allowed disabled:opacity-60"
                 disabled={submitting}
+                aria-busy={submitting}
               >
-                <FaPaperPlane className="text-sm" />
-                {submitting ? 'Sending your enquiry...' : 'Request my free review'}
+                {submitting ? (
+                  <Spinner />
+                ) : (
+                  <FaPaperPlane aria-hidden="true" className="text-sm" />
+                )}
+                <span aria-live="polite">
+                  {submitting
+                    ? 'Sending your enquiry...'
+                    : 'Request my free review'}
+                </span>
               </button>
               <p className="text-center text-xs leading-5 text-muted-foreground">
                 We’ll use these details to prepare for your enquiry. Please

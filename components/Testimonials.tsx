@@ -4,6 +4,38 @@ import Image from 'next/image';
 import { motion, useReducedMotion } from 'framer-motion';
 import { testimonialsData } from '@/constants/testimonials';
 
+export function ClientLogoStrip() {
+  return (
+    <section
+      aria-label="SecurePal clients"
+      className="border-y border-border bg-white px-4 py-8"
+    >
+      <div className="container">
+        <p className="text-center text-sm font-medium text-muted-foreground">
+          Supporting teams at
+        </p>
+        <ul className="mt-5 grid grid-cols-2 items-center gap-6 sm:grid-cols-4">
+          {testimonialsData.map((client) => (
+            <li
+              key={client.name}
+              className="flex min-h-16 items-center justify-center"
+            >
+              <Image
+                src={client.image}
+                alt={client.name}
+                width={160}
+                height={112}
+                sizes="(max-width: 640px) 140px, 160px"
+                className="max-h-16 w-32 object-contain sm:w-36"
+              />
+            </li>
+          ))}
+        </ul>
+      </div>
+    </section>
+  );
+}
+
 const TestimonialCarousel = () => {
   const shouldReduceMotion = useReducedMotion();
 
@@ -29,42 +61,6 @@ const TestimonialCarousel = () => {
         </motion.div>
 
         <div className="rounded-3xl border border-border bg-white p-5 shadow-sm sm:p-7 lg:p-10">
-          <div
-            className="client-logo-marquee relative mb-8 overflow-hidden rounded-2xl border border-border/70 bg-slate-50/70 py-3 md:mb-10"
-            role="region"
-            aria-label="SecurePal client logos"
-          >
-            <div
-              className={`client-logo-track flex w-max ${
-                shouldReduceMotion ? 'client-logo-track-static' : ''
-              }`}
-            >
-              {[false, true].map((isDuplicate) => (
-                <ul
-                  key={String(isDuplicate)}
-                  aria-hidden={isDuplicate}
-                  className="flex shrink-0 items-center gap-8 pr-8 md:gap-12 md:pr-12"
-                >
-                  {testimonialsData.map((testimonial) => (
-                    <li
-                      key={testimonial.name}
-                      className="flex h-20 w-28 shrink-0 items-center justify-center sm:w-36"
-                    >
-                      <Image
-                        src={testimonial.image}
-                        alt={isDuplicate ? '' : testimonial.name}
-                        width={160}
-                        height={112}
-                        sizes="(max-width: 640px) 144px, 176px"
-                        className="h-full w-full object-contain"
-                      />
-                    </li>
-                  ))}
-                </ul>
-              ))}
-            </div>
-          </div>
-
           <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-4">
             {testimonialsData.map((testimonial, index) => (
               <motion.article

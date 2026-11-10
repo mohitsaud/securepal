@@ -9,11 +9,16 @@ import {
   Workflow,
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import AiDemonstrations from '@/components/AiDemonstrations';
+import {
+  AiOpportunityAssessment,
+  AiSavingsEstimator,
+} from '@/components/AiBusinessTools';
 
 export const metadata: Metadata = {
   title: 'SecurePal AI | Custom AI Solutions and Automation',
   description:
-    'Practical AI assistants and custom automation to improve customer service, streamline repetitive tasks and help Australian businesses work more efficiently.',
+    'Explore practical AI assistants and workflow automation for Australian businesses, with synthetic demonstrations and human oversight.',
 };
 
 const solutions = [
@@ -139,6 +144,28 @@ export default function AISolutionsPage() {
               </article>
             ))}
           </div>
+          <AiDemonstrations />
+        </div>
+      </section>
+
+      <section className="bg-slate-50 px-4 py-16 sm:py-20">
+        <div className="container">
+          <div className="max-w-3xl">
+            <p className="text-sm font-semibold text-primary">
+              Start with your process
+            </p>
+            <h2 className="mt-2 font-heading text-3xl font-bold text-navy sm:text-4xl">
+              Explore where AI might help
+            </h2>
+            <p className="mt-4 leading-7 text-muted-foreground">
+              Use these local tools to prepare for a conversation. Your entries
+              stay in this browser and are not submitted.
+            </p>
+          </div>
+          <div className="mt-8 grid items-start gap-5 lg:grid-cols-2">
+            <AiOpportunityAssessment />
+            <AiSavingsEstimator />
+          </div>
         </div>
       </section>
 
@@ -180,6 +207,29 @@ export default function AISolutionsPage() {
               is suitable. We agree feasibility and scope before work begins,
               with appropriate privacy, security, access controls, and human
               oversight considered as part of the design.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section className="bg-background px-4 py-16 sm:py-20">
+        <div className="container max-w-4xl">
+          <div className="rounded-2xl border border-border bg-white p-6 sm:p-8">
+            <h2 className="font-heading text-2xl font-bold text-navy">
+              Privacy and human oversight
+            </h2>
+            <p className="mt-4 leading-7 text-muted-foreground">
+              Before an AI solution is implemented, its proposal should explain
+              whether AI interacts with customers, what information is
+              processed, which providers are involved, how access and
+              retention are handled, and whether calls are recorded or
+              transcribed. Human review, escalation, and override arrangements
+              should be agreed for the workflow.
+            </p>
+            <p className="mt-3 leading-7 text-muted-foreground">
+              Those details depend on the selected tools and business process.
+              They are confirmed before implementation; these sample
+              demonstrations do not process real customer information.
             </p>
           </div>
         </div>

@@ -19,7 +19,7 @@ const TestimonialsPage = () => {
         transition={{ duration: 0.6 }}
       >
         <h2 className="text-3xl md:text-5xl font-extrabold text-gray-900">
-          What Our Clients Say
+          Client stories and testimonials
         </h2>
         <p className="mt-3 text-lg text-gray-600">
           Real feedback from businesses and individuals who trust SecurePal.

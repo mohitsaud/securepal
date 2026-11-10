@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import { useEffect, useState } from 'react';
 import { motion, useReducedMotion } from 'framer-motion';
 import {
   ArrowUpRight,
@@ -10,6 +11,10 @@ import {
   ShieldCheck,
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { trackConversion } from '@/lib/analytics';
+
+const slogan = 'IT that works. Security that matters.';
+const sloganCharacters = Array.from(slogan);
 
 const coverage = [
   {
@@ -36,6 +41,30 @@ const coverage = [
 
 export default function HeroSection() {
   const shouldReduceMotion = useReducedMotion();
+  const [typedCharacters, setTypedCharacters] = useState(0);
+
+  useEffect(() => {
+    if (shouldReduceMotion) {
+      setTypedCharacters(sloganCharacters.length);
+      return;
+    }
+
+    if (typedCharacters >= sloganCharacters.length) return;
+
+    const previousCharacter = sloganCharacters[typedCharacters - 1];
+    const delay =
+      typedCharacters === 0
+        ? 180
+        : previousCharacter === '.'
+          ? 220
+          : 48;
+    const timer = window.setTimeout(
+      () => setTypedCharacters((count) => count + 1),
+      delay
+    );
+
+    return () => window.clearTimeout(timer);
+  }, [shouldReduceMotion, typedCharacters]);
 
   return (
     <section className="relative overflow-hidden bg-navy text-white">
@@ -50,8 +79,24 @@ export default function HeroSection() {
             <span aria-hidden="true" className="h-px w-8 bg-cyan" />
             IT support for Australian businesses
           </p>
-          <h1 className="max-w-2xl text-[2.65rem] font-bold leading-[1.08] tracking-[-0.045em] sm:text-5xl lg:text-[4.25rem]">
-            IT that works. Security that matters.
+          <h1
+            aria-label={slogan}
+            className="grid max-w-2xl text-[2.65rem] font-bold leading-[1.08] tracking-[-0.045em] sm:text-5xl lg:text-[4.25rem]"
+          >
+            <span
+              className="invisible col-start-1 row-start-1"
+              aria-hidden="true"
+            >
+              {slogan}
+            </span>
+            <span className="col-start-1 row-start-1" aria-hidden="true">
+              {sloganCharacters.slice(0, typedCharacters).join('')}
+              {typedCharacters < sloganCharacters.length && (
+                <span className="animate-blink ml-1 font-normal text-cyan">
+                  |
+                </span>
+              )}
+            </span>
           </h1>
           <p className="mt-5 max-w-xl text-base leading-7 text-slate-300 sm:mt-6 lg:text-lg lg:leading-8">
             Everyday IT, security, cloud and automation for growing businesses.
@@ -62,7 +107,12 @@ export default function HeroSection() {
               size="lg"
               className="h-12 bg-cyan px-6 text-navy hover:bg-cyan/90"
             >
-              <Link href="/contact#enquiry">Book a free IT &amp; Cyber Review</Link>
+              <Link
+                href="/contact#enquiry"
+                onClick={() => trackConversion('consultation_click')}
+              >
+                Book a free IT &amp; Cyber Review
+              </Link>
             </Button>
             <Button
               asChild
@@ -104,15 +154,32 @@ export default function HeroSection() {
             </div>
 
             <div className="relative mt-3 sm:mt-2">
-              <span
+              <motion.span
                 aria-hidden="true"
                 className="absolute bottom-8 left-[1.1rem] top-8 hidden w-px bg-cyan/35 sm:block"
+                initial={shouldReduceMotion ? false : { scaleY: 0 }}
+                animate={{ scaleY: 1 }}
+                transition={{
+                  duration: shouldReduceMotion ? 0 : 0.8,
+                  delay: shouldReduceMotion ? 0 : 0.25,
+                  ease: 'easeOut',
+                }}
+                style={{ transformOrigin: 'top' }}
               />
               <ul className="grid grid-cols-2 gap-2 sm:block sm:gap-0">
-                {coverage.map(({ icon: Icon, title, detail }) => (
-                  <li
+                {coverage.map(({ icon: Icon, title, detail }, index) => (
+                  <motion.li
                     key={title}
                     className="relative flex min-w-0 flex-col items-start gap-2 rounded-xl border border-white/10 bg-white/[0.03] p-3 sm:flex-row sm:items-center sm:gap-4 sm:rounded-none sm:border-0 sm:border-b sm:bg-transparent sm:px-0 sm:py-5 sm:last:border-0"
+                    initial={
+                      shouldReduceMotion ? false : { opacity: 0, y: 8 }
+                    }
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{
+                      duration: shouldReduceMotion ? 0 : 0.35,
+                      delay: shouldReduceMotion ? 0 : 0.35 + index * 0.1,
+                      ease: 'easeOut',
+                    }}
                   >
                     <span className="relative z-10 inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-cyan/35 bg-navy-soft text-cyan">
                       <Icon
@@ -129,7 +196,7 @@ export default function HeroSection() {
                         {detail}
                       </span>
                     </span>
-                  </li>
+                  </motion.li>
                 ))}
               </ul>
             </div>

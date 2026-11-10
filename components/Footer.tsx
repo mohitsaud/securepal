@@ -17,6 +17,7 @@ import {
 import Logo from '@/components/Logo';
 import { contactNumber } from '@/constants/phone';
 import { FaLinkedin, FaTiktok } from 'react-icons/fa';
+import { trackConversion } from '@/lib/analytics';
 
 export default function Footer() {
   return (
@@ -179,6 +180,15 @@ export default function Footer() {
                   <span>Terms & Conditions</span>
                 </Link>
               </li>
+              <li>
+                <Link
+                  href="/trust-centre"
+                  className="flex items-center text-white/80 hover:text-white transition-colors"
+                >
+                  <Shield className="mr-2 h-4 w-4 flex-shrink-0" />
+                  <span>Trust Centre</span>
+                </Link>
+              </li>
             </ul>
           </div>
 
@@ -191,6 +201,7 @@ export default function Footer() {
                 <div>
                   <a
                     href={'tel:' + contactNumber}
+                    onClick={() => trackConversion('phone_click')}
                     className="text-white hover:underline transition-colors"
                   >
                     {contactNumber}
@@ -254,6 +265,12 @@ export default function Footer() {
                 className="hover:text-white transition-colors"
               >
                 Terms & Conditions
+              </Link>
+              <Link
+                href="/trust-centre"
+                className="hover:text-white transition-colors"
+              >
+                Trust Centre
               </Link>
             </div>
           </div>

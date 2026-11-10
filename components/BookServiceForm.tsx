@@ -4,6 +4,8 @@ import { useState, useEffect, ChangeEvent } from 'react';
 import { toast } from 'sonner';
 import { User, Building2, Phone, Mail, Calendar, Clock } from 'lucide-react';
 import { Button } from './ui/button';
+import { Spinner } from './ui/spinner';
+import { trackConversion } from '@/lib/analytics';
 
 export default function BookServiceForm() {
   const [formData, setFormData] = useState({
@@ -60,6 +62,7 @@ export default function BookServiceForm() {
       const data = await response.json();
 
       if (data.success) {
+        trackConversion('service_booking_success');
         toast.success('Booking request sent successfully! We will contact you shortly.');
         setFormData({
           name: '',
@@ -109,7 +112,11 @@ export default function BookServiceForm() {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-6">
+    <form
+      onSubmit={handleSubmit}
+      className="space-y-6"
+      aria-busy={isSubmitting}
+    >
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <div className="relative">
           <label htmlFor="name" className="mb-1 block text-sm font-medium text-foreground">
@@ -243,11 +250,19 @@ export default function BookServiceForm() {
         <Button
           type="submit"
           disabled={isSubmitting}
+          aria-busy={isSubmitting}
           className={`px-8 py-3 bg-primary text-white font-medium rounded-md hover:bg-brand-hover focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 transition-colors cursor-pointer ${
             isSubmitting ? 'opacity-75' : ''
           }`}
         >
-          {isSubmitting ? 'Sending...' : 'Book Service'}
+          {isSubmitting ? (
+            <span className="inline-flex items-center gap-2" role="status">
+              <Spinner />
+              Sending...
+            </span>
+          ) : (
+            'Book Service'
+          )}
         </Button>
       </div>
     </form>
