@@ -10,29 +10,49 @@ export function ClientLogoStrip() {
   return (
     <section
       aria-label="SecurePal clients"
-      className="border-y border-border bg-white px-4 py-8"
+      className="border-y border-border bg-fog py-10 sm:py-12"
     >
-      <div className="container">
-        <p className="text-center text-sm font-medium text-muted-foreground">
-          Supporting teams at
-        </p>
-        <ul className="mt-5 grid grid-cols-2 items-center gap-6 sm:grid-cols-4">
-          {testimonialsData.map((client) => (
-            <li
-              key={client.name}
-              className="flex min-h-16 items-center justify-center"
+      <div className="container px-4">
+        <div className="flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between sm:gap-8">
+          <div>
+            <p className="text-sm font-semibold text-primary">
+              Local businesses we support
+            </p>
+            <h2 className="mt-2 font-heading text-2xl font-bold tracking-tight text-navy sm:text-3xl">
+              Better IT, built around your team.
+            </h2>
+          </div>
+          <p className="max-w-sm text-sm leading-6 text-muted-foreground sm:text-right">
+            Supporting teams in education, hospitality and community services.
+          </p>
+        </div>
+      </div>
+      <div className="client-logo-marquee mt-7 overflow-hidden border-y border-border bg-white py-3 sm:mt-8 sm:py-4">
+        <div className="client-logo-track">
+          {[false, true].map((isDuplicate) => (
+            <ul
+              key={String(isDuplicate)}
+              aria-hidden={isDuplicate || undefined}
+              className="client-logo-group"
             >
-              <Image
-                src={client.image}
-                alt={client.name}
-                width={160}
-                height={112}
-                sizes="(max-width: 640px) 140px, 160px"
-                className="max-h-16 w-32 object-contain sm:w-36"
-              />
-            </li>
+              {testimonialsData.map((client) => (
+                <li
+                  key={client.name}
+                  className="flex h-20 w-36 shrink-0 items-center justify-center sm:h-24 sm:w-48"
+                >
+                  <Image
+                    src={client.image}
+                    alt={isDuplicate ? '' : client.name}
+                    width={192}
+                    height={128}
+                    sizes="(max-width: 640px) 144px, 192px"
+                    className="max-h-16 w-32 object-contain sm:max-h-20 sm:w-40"
+                  />
+                </li>
+              ))}
+            </ul>
           ))}
-        </ul>
+        </div>
       </div>
     </section>
   );

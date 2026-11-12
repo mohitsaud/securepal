@@ -238,15 +238,29 @@
 }
 
 .client-logo-track {
+  display: flex;
+  width: max-content;
   animation: client-logo-marquee 32s linear infinite;
 }
 
-.client-logo-marquee:hover .client-logo-track {
+.client-logo-group {
+  display: flex;
+  flex: none;
+  align-items: center;
+  gap: 2rem;
+  padding-right: 2rem;
+}
+
+.client-logo-marquee:hover .client-logo-track,
+.client-logo-marquee:focus-within .client-logo-track {
   animation-play-state: paused;
 }
 
-.client-logo-track-static {
-  animation: none;
+@media (min-width: 640px) {
+  .client-logo-group {
+    gap: 3rem;
+    padding-right: 3rem;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -254,7 +268,7 @@
     animation: none;
   }
 
-  .client-logo-track > [aria-hidden='true'] {
+  .client-logo-group[aria-hidden='true'] {
     display: none;
   }
 }
