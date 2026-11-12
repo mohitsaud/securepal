@@ -2,12 +2,14 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import { ArrowUpRight } from 'lucide-react';
 import { industryProfiles } from '@/data/industries';
+import { createPageMetadata } from '@/lib/seo-metadata';
 
-export const metadata: Metadata = {
-  title: 'Industries | SecurePal Managed IT and Business Technology',
+export const metadata: Metadata = createPageMetadata({
+  title: 'IT Support for Australian Business Industries',
   description:
     'Explore managed IT, cybersecurity, cloud, and practical automation considerations for Australian professional and small businesses.',
-};
+  path: '/industries',
+});
 
 export default function IndustriesPage() {
   return (

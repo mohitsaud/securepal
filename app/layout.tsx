@@ -2,6 +2,17 @@ import type { Metadata } from 'next';
 import { Inter, Manrope } from 'next/font/google';
 import './globals.css';
 import ClientLayout from './ClientLayout';
+import { createPageMetadata, SITE_URL } from '@/lib/seo-metadata';
+
+const organizationJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  name: 'SecurePal',
+  url: SITE_URL,
+  logo: `${SITE_URL}/images/securepal-logo-navy.png`,
+  description:
+    'Managed IT support and cybersecurity services for Australian businesses.',
+};
 
 const inter = Inter({
   subsets: ['latin'],
@@ -14,34 +25,32 @@ const manrope = Manrope({
 });
 
 export const metadata: Metadata = {
-  title: 'SecurePal | Managed IT, Cybersecurity & AI Automation',
-  description:
-    'Managed IT support, cybersecurity, cloud and customised AI solutions to help Australian small businesses work smarter and operate securely.',
-  keywords:
-    'managed IT Australia, cybersecurity, Microsoft 365, AI automation, business IT support, SecurePal',
-  authors: [{ name: 'SecurePal Team', url: 'https://securepal.com.au' }],
-  creator: 'SecurePal',
-  metadataBase: new URL('https://securepal.com.au'),
-  openGraph: {
-    title: 'SecurePal | Managed IT, Cybersecurity & AI Automation',
+  ...createPageMetadata({
+    title: 'Managed IT & Cybersecurity for Australian Businesses',
     description:
-      'IT that works. Security that matters. Managed IT support, cybersecurity, cloud and customised AI solutions for Australian small businesses.',
-    url: 'https://securepal.com.au',
+      'Australian small businesses can get practical managed IT support and cybersecurity services from SecurePal, including Microsoft 365, cloud, and business continuity support.',
+    path: '/',
+  }),
+  metadataBase: new URL(SITE_URL),
+  title: {
+    default: 'Managed IT & Cybersecurity for Australian Businesses | SecurePal',
+    template: '%s | SecurePal',
+  },
+  creator: 'SecurePal',
+  openGraph: {
+    title: 'Managed IT & Cybersecurity for Australian Businesses | SecurePal',
+    description:
+      'Practical managed IT support and cybersecurity services for Australian small businesses.',
+    url: SITE_URL,
     siteName: 'SecurePal',
     locale: 'en_AU',
     type: 'website',
     images: [
       {
-        url: 'https://securepal.com.au/images/1.png',
-        width: 1200,
-        height: 630,
+        url: '/images/1.png',
         alt: 'SecurePal - Managed IT Services',
       },
     ],
-  },
-  robots: {
-    index: true,
-    follow: true,
   },
 };
 
@@ -53,8 +62,14 @@ export default function RootLayout({
   return (
     <html lang="en-AU" suppressHydrationWarning>
       <body className={`${inter.variable} ${manrope.variable}`}>
-        <ClientLayout>{children}</ClientLayout>
-      </body>
+            <script
+              type="application/ld+json"
+              dangerouslySetInnerHTML={{
+                __html: JSON.stringify(organizationJsonLd),
+              }}
+            />
+            <ClientLayout>{children}</ClientLayout>
+          </body>
     </html>
   );
 }

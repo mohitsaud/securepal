@@ -1,11 +1,13 @@
 import { Metadata } from 'next';
 import Link from 'next/link';
+import { createPageMetadata } from '@/lib/seo-metadata';
 
-export const metadata: Metadata = {
-  title: 'Privacy Policy | SecurePal',
+export const metadata: Metadata = createPageMetadata({
+  title: 'Privacy Policy',
   description:
-    'Read our privacy policy to understand how SecurePal collects, uses, and protects your data.',
-};
+    'Read SecurePal’s privacy policy for information about how personal information is collected, used, stored, and protected.',
+  path: '/privacy-policy',
+});
 
 export default function PrivacyPolicy() {
   return (

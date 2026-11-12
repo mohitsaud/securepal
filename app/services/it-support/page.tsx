@@ -2,12 +2,14 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import { ArrowRight, Check, Clock3, Headset, Laptop2, Users } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { createPageMetadata } from '@/lib/seo-metadata';
 
-export const metadata: Metadata = {
-  title: 'Managed IT Support for Australian Businesses | SecurePal',
+export const metadata: Metadata = createPageMetadata({
+  title: 'Managed IT Support for Australian Businesses',
   description:
     'Managed IT support, helpdesk, device management and technology advice for Australian small businesses, with scope and response arrangements agreed in advance.',
-};
+  path: '/services/it-support',
+});
 
 const supportServices = [
   'Managed IT support and helpdesk',

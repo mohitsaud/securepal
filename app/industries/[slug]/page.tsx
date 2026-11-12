@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { ArrowRight, Check } from 'lucide-react';
 import { industryProfiles } from '@/data/industries';
+import { createPageMetadata } from '@/lib/seo-metadata';
 
 interface IndustryPageProps {
   params: Promise<{ slug: string }>;
@@ -12,6 +13,8 @@ export function generateStaticParams() {
   return industryProfiles.map(({ slug }) => ({ slug }));
 }
 
+export const dynamicParams = false;
+
 export async function generateMetadata({
   params,
 }: IndustryPageProps): Promise<Metadata> {
@@ -20,10 +23,11 @@ export async function generateMetadata({
 
   if (!industry) return { title: 'Industry not found | SecurePal' };
 
-  return {
-    title: `${industry.name} IT Support and Technology | SecurePal`,
+  return createPageMetadata({
+    title: `${industry.name} IT Support and Technology`,
     description: industry.intro,
-  };
+    path: `/industries/${industry.slug}`,
+  });
 }
 
 export default async function IndustryPage({ params }: IndustryPageProps) {

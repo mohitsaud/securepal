@@ -1,11 +1,14 @@
 import { Metadata } from "next";
 import BookServiceForm from "@/components/BookServiceForm";
 import { Calendar, Clock, Phone, Mail, Building2, User } from "lucide-react";
+import { createPageMetadata } from "@/lib/seo-metadata";
 
-export const metadata: Metadata = {
-  title: "Book a Service - SecurePal",
-  description: "Book a security service with SecurePal. Fill out the form to schedule your service.",
-};
+export const metadata: Metadata = createPageMetadata({
+  title: "Book a SecurePal Service",
+  description: "Existing SecurePal customers can submit a service booking request.",
+  path: "/book-service",
+  indexable: false,
+});
 
 export default function BookServicePage() {
   return (

@@ -1,11 +1,13 @@
 import { Metadata } from 'next';
 import Link from 'next/link';
+import { createPageMetadata } from '@/lib/seo-metadata';
 
-export const metadata: Metadata = {
-  title: 'Terms & Conditions | SecurePal',
+export const metadata: Metadata = createPageMetadata({
+  title: 'Terms and Conditions',
   description:
-    'Read our terms and conditions to understand how SecurePal collects, uses, and protects your data.',
-};
+    'Read the terms that apply to use of the SecurePal website and its services.',
+  path: '/terms-conditions',
+});
 
 export default function TermsConditions() {
   return (

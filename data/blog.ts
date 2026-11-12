@@ -8,7 +8,6 @@ export const blogPosts = [
     image: 'https://images.unsplash.com/photo-1697577418970-95d99b5a55cf',
     author: {
       name: 'Sandeep Saud',
-      image: 'https://source.unsplash.com/100x100/?woman,portrait',
     },
     date: 'April 2, 2025',
     content: `
@@ -68,7 +67,6 @@ export const blogPosts = [
     image: 'https://images.unsplash.com/photo-1633265486064-086b219458ec',
     author: {
       name: 'Binod Kunwar',
-      image: 'https://source.unsplash.com/100x100/?man,portrait',
     },
     date: 'March 28, 2025',
     content: `
@@ -144,7 +142,6 @@ export const blogPosts = [
     image: 'https://images.unsplash.com/photo-1634733988138-bf2c3a2a13fa',
     author: {
       name: 'Bishal Shiwakoti',
-      image: 'https://source.unsplash.com/100x100/?woman,smile',
     },
     date: 'March 18, 2025',
     content: `
@@ -222,7 +219,6 @@ export const blogPosts = [
     image: 'https://images.unsplash.com/photo-1695668548342-c0c1ad479aee',
     author: {
       name: 'Sandeep Saud',
-      image: 'https://source.unsplash.com/100x100/?man,thinking',
     },
     date: 'March 10, 2025',
     content: `
@@ -294,7 +290,6 @@ export const blogPosts = [
     image: 'https://images.unsplash.com/photo-1526378800651-c32d170fe6f8',
     author: {
       name: 'Binod Kunwar',
-      image: 'https://source.unsplash.com/100x100/?man,portrait',
     },
     date: 'March 5, 2025',
     content: `

@@ -4,7 +4,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { motion, useReducedMotion } from 'framer-motion';
 import { ArrowRight, BookOpen } from 'lucide-react';
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
+import { Avatar, AvatarFallback } from '@/components/ui/avatar';
 import { blogPosts } from '@/data/blog';
 
 export default function BlogPage() {
@@ -84,10 +84,6 @@ export default function BlogPage() {
                 </p>
                 <div className="mt-6 flex items-center gap-3">
                   <Avatar className="h-10 w-10 ring-2 ring-cyan-soft">
-                    <AvatarImage
-                      src={featuredPost.author.image}
-                      alt={featuredPost.author.name}
-                    />
                     <AvatarFallback className="bg-cyan-soft font-semibold text-primary">
                       {featuredPost.author.name.charAt(0)}
                     </AvatarFallback>
@@ -166,10 +162,6 @@ export default function BlogPage() {
                     <div className="mt-5 flex items-center justify-between border-t border-border pt-4">
                       <div className="flex min-w-0 items-center gap-2.5">
                         <Avatar className="h-8 w-8">
-                          <AvatarImage
-                            src={post.author.image}
-                            alt={post.author.name}
-                          />
                           <AvatarFallback className="bg-cyan-soft text-xs font-semibold text-primary">
                             {post.author.name.charAt(0)}
                           </AvatarFallback>

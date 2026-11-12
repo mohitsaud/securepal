@@ -1,12 +1,14 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { ArrowUpRight, Clock3, FileText, ShieldCheck } from 'lucide-react';
+import { createPageMetadata } from '@/lib/seo-metadata';
 
-export const metadata: Metadata = {
-  title: 'Trust Centre | SecurePal',
+export const metadata: Metadata = createPageMetadata({
+  title: 'Trust Centre',
   description:
     'Find SecurePal privacy and service information, support details, and how AI project data handling is agreed before implementation.',
-};
+  path: '/trust-centre',
+});
 
 const documents = [
   {

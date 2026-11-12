@@ -1,8 +1,7 @@
 import type { MetadataRoute } from 'next';
 import { blogPosts } from '@/data/blog';
 import { industryProfiles } from '@/data/industries';
-
-const siteUrl = 'https://securepal.com.au';
+import { SITE_URL } from '@/lib/seo-metadata';
 
 const pages = [
   '/',
@@ -10,8 +9,6 @@ const pages = [
   '/services',
   '/pricing',
   '/packages',
-  '/packages/request-quote',
-  '/book-service',
   '/contact',
   '/testimonials',
   '/blog',
@@ -50,8 +47,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
   ];
 
   return [...pages, ...dynamicPages].map((path) => ({
-    url: `${siteUrl}${path}`,
-    changeFrequency: path === '/' ? 'weekly' : 'monthly',
-    priority: path === '/' ? 1 : 0.7,
+    url: new URL(path, SITE_URL).toString(),
   }));
 }

@@ -14,12 +14,14 @@ import {
   AiOpportunityAssessment,
   AiSavingsEstimator,
 } from '@/components/AiBusinessTools';
+import { createPageMetadata } from '@/lib/seo-metadata';
 
-export const metadata: Metadata = {
-  title: 'SecurePal AI | Custom AI Solutions and Automation',
+export const metadata: Metadata = createPageMetadata({
+  title: 'AI Solutions and Workflow Automation',
   description:
     'Explore practical AI assistants and workflow automation for Australian businesses, with synthetic demonstrations and human oversight.',
-};
+  path: '/services/ai-solutions',
+});
 
 const solutions = [
   {

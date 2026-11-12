@@ -7,12 +7,14 @@ import {
   ShieldCheck,
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { createPageMetadata } from '@/lib/seo-metadata';
 
-export const metadata: Metadata = {
-  title: 'Business Cybersecurity Services | SecurePal',
+export const metadata: Metadata = createPageMetadata({
+  title: 'Business Cybersecurity Services',
   description:
     'Practical cybersecurity services for Australian businesses, from Microsoft 365 and endpoint protection to preparedness and Essential Eight assistance.',
-};
+  path: '/services/cybersecurity',
+});
 
 const securityServices = [
   'Microsoft 365 security configuration',
