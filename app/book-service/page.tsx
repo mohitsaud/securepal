@@ -56,9 +56,9 @@ export default function BookServicePage() {
 
           {/* Additional Information */}
           <div className="mt-12 text-center">
-            <p className="text-muted-foreground">
+            <p className="text-sm leading-relaxed text-muted-foreground sm:text-base">
               Need immediate assistance? Call us at{" "}
-              <a href="tel:(02) 9051 0054" className="font-semibold text-primary hover:text-brand-hover">
+              <a href="tel:(02) 9051 0054" className="whitespace-nowrap font-semibold text-primary hover:text-brand-hover">
                 (02) 9051 0054
               </a>
             </p>

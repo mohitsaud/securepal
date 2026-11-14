@@ -2,7 +2,7 @@
 
 import { useState, useEffect, ChangeEvent } from 'react';
 import { toast } from 'sonner';
-import { User, Building2, Phone, Mail, Calendar, Clock } from 'lucide-react';
+import { User, Building2, Phone, Mail } from 'lucide-react';
 import { Button } from './ui/button';
 import { Spinner } from './ui/spinner';
 import { trackConversion } from '@/lib/analytics';
@@ -197,52 +197,46 @@ export default function BookServiceForm() {
           <label htmlFor="bookingDate" className="mb-1 block text-sm font-medium text-foreground">
             Preferred Date *
           </label>
-          <div className="relative">
-            <Calendar className="absolute left-3 top-1/2 h-5 w-5 -translate-y-1/2 text-muted-foreground" />
-            <input
-              type="date"
-              id="bookingDate"
-              name="bookingDate"
-              required
-              min={minDate}
-              value={formData.bookingDate}
-              onChange={handleChange}
-              className="pl-10 block w-full rounded-md border-input shadow-sm focus:border-primary focus:ring-ring px-4 py-3 text-base"
-            />
-          </div>
+          <input
+            type="date"
+            id="bookingDate"
+            name="bookingDate"
+            required
+            min={minDate}
+            value={formData.bookingDate}
+            onChange={handleChange}
+            className="block w-full rounded-md border-input px-4 py-3 text-base shadow-sm focus:border-primary focus:ring-ring"
+          />
         </div>
 
         <div className="relative">
           <label htmlFor="bookingTime" className="mb-1 block text-sm font-medium text-foreground">
             Preferred Time *
           </label>
-          <div className="relative">
-            <Clock className="absolute left-3 top-1/2 h-5 w-5 -translate-y-1/2 text-muted-foreground" />
-            <select
-              id="bookingTime"
-              name="bookingTime"
-              required
-              value={formData.bookingTime}
-              onChange={handleChange}
-              className="pl-10 block w-full rounded-md border-input shadow-sm focus:border-primary focus:ring-ring px-4 py-3 text-base"
-            >
-              <option value="">Select a time</option>
-              {Array.from({ length: 24 }, (_, i) => {
-                const hour = i + 9; // Start from 9 AM
-                if (hour > 17) return null; // End at 5 PM
-                const time = `${String(hour).padStart(2, '0')}:00`;
-                
-                // Only show available time slots
-                if (!isTimeSlotAvailable(time)) return null;
-                
-                return (
-                  <option key={time} value={time}>
-                    {formatTime(time)}
-                  </option>
-                );
-              })}
-            </select>
-          </div>
+          <select
+            id="bookingTime"
+            name="bookingTime"
+            required
+            value={formData.bookingTime}
+            onChange={handleChange}
+            className="block w-full rounded-md border-input px-4 py-3 text-base shadow-sm focus:border-primary focus:ring-ring"
+          >
+            <option value="">Select a time</option>
+            {Array.from({ length: 24 }, (_, i) => {
+              const hour = i + 9; // Start from 9 AM
+              if (hour > 17) return null; // End at 5 PM
+              const time = `${String(hour).padStart(2, '0')}:00`;
+
+              // Only show available time slots
+              if (!isTimeSlotAvailable(time)) return null;
+
+              return (
+                <option key={time} value={time}>
+                  {formatTime(time)}
+                </option>
+              );
+            })}
+          </select>
         </div>
       </div>
 
