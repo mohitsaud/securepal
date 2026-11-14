@@ -1,5 +1,4 @@
 import type { Metadata } from 'next';
-import { Inter, Manrope } from 'next/font/google';
 import './globals.css';
 import ClientLayout from './ClientLayout';
 import { createPageMetadata, SITE_URL } from '@/lib/seo-metadata';
@@ -13,16 +12,6 @@ const organizationJsonLd = {
   description:
     'Managed IT support and cybersecurity services for Australian businesses.',
 };
-
-const inter = Inter({
-  subsets: ['latin'],
-  variable: '--font-inter',
-});
-
-const manrope = Manrope({
-  subsets: ['latin'],
-  variable: '--font-manrope',
-});
 
 export const metadata: Metadata = {
   ...createPageMetadata({
@@ -61,15 +50,15 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en-AU" suppressHydrationWarning>
-      <body className={`${inter.variable} ${manrope.variable}`}>
-            <script
-              type="application/ld+json"
-              dangerouslySetInnerHTML={{
-                __html: JSON.stringify(organizationJsonLd),
-              }}
-            />
-            <ClientLayout>{children}</ClientLayout>
-          </body>
+      <body>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(organizationJsonLd),
+          }}
+        />
+        <ClientLayout>{children}</ClientLayout>
+      </body>
     </html>
   );
 }

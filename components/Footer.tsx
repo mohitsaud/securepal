@@ -6,7 +6,8 @@ import {
   Mail,
   Phone,
   MapPin,
-  Globe,
+  Bot,
+  Cloud,
   Shield,
   Server,
   HelpCircle,
@@ -28,7 +29,7 @@ export default function Footer() {
           {/* Company Info */}
           <div className="space-y-6">
             <Logo size="md" className="text-white" />
-            <p className="text-white/80 max-w-xs">
+            <p className="max-w-xs text-sm leading-6 text-white/80">
               Managed IT, cybersecurity, Microsoft 365 and practical AI
               automation for Australian businesses.
             </p>
@@ -63,39 +64,12 @@ export default function Footer() {
 
           {/* Services */}
           <div className="space-y-6">
-            <h3 className="text-xl font-semibold">Services</h3>
+            <h3 className="text-lg font-semibold">Services</h3>
             <ul className="space-y-4">
               <li>
                 <Link
-                  href="/services/full-service"
-                  className="flex items-center text-white/80 hover:text-white transition-colors"
-                >
-                  <Server className="mr-2 h-4 w-4 flex-shrink-0" />
-                  <span>Full Service Package</span>
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/services/website-hosting"
-                  className="flex items-center text-white/80 hover:text-white transition-colors"
-                >
-                  <Globe className="mr-2 h-4 w-4 flex-shrink-0" />
-                  <span>Website Hosting & Design</span>
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/services/cybersecurity"
-                  className="flex items-center text-white/80 hover:text-white transition-colors"
-                >
-                  <Shield className="mr-2 h-4 w-4 flex-shrink-0" />
-                  <span>Cybersecurity Solutions</span>
-                </Link>
-              </li>
-              <li>
-                <Link
                   href="/services/it-support"
-                  className="flex items-center text-white/80 hover:text-white transition-colors"
+                  className="flex items-center text-sm text-white/80 transition-colors hover:text-white"
                 >
                   <HelpCircle className="mr-2 h-4 w-4 flex-shrink-0" />
                   <span>Managed IT Support</span>
@@ -103,20 +77,47 @@ export default function Footer() {
               </li>
               <li>
                 <Link
+                  href="/services/cybersecurity"
+                  className="flex items-center text-sm text-white/80 transition-colors hover:text-white"
+                >
+                  <Shield className="mr-2 h-4 w-4 flex-shrink-0" />
+                  <span>Cybersecurity</span>
+                </Link>
+              </li>
+              <li>
+                <Link
                   href="/services/cloud-solutions"
-                  className="flex items-center text-white/80 hover:text-white transition-colors"
+                  className="flex items-center text-sm text-white/80 transition-colors hover:text-white"
+                >
+                  <Cloud className="mr-2 h-4 w-4 flex-shrink-0" />
+                  <span>Microsoft 365 &amp; Cloud</span>
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/services/ai-solutions"
+                  className="flex items-center text-sm text-white/80 transition-colors hover:text-white"
+                >
+                  <Bot className="mr-2 h-4 w-4 flex-shrink-0" />
+                  <span>AI &amp; Automation</span>
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/services/data-backup"
+                  className="flex items-center text-sm text-white/80 transition-colors hover:text-white"
                 >
                   <Server className="mr-2 h-4 w-4 flex-shrink-0" />
-                  <span>Cloud Solutions</span>
+                  <span>Backup &amp; Business Continuity</span>
                 </Link>
               </li>
               <li>
                 <Link
                   href="/services"
-                  className="flex items-center text-white/80 hover:text-white transition-colors"
+                  className="flex items-center text-sm text-white/80 transition-colors hover:text-white"
                 >
                   <FileText className="mr-2 h-4 w-4 flex-shrink-0" />
-                  <span>View All Services</span>
+                  <span>View all services</span>
                 </Link>
               </li>
             </ul>
@@ -124,12 +125,12 @@ export default function Footer() {
 
           {/* Company */}
           <div className="space-y-6">
-            <h3 className="text-xl font-semibold">Company</h3>
+            <h3 className="text-lg font-semibold">Company</h3>
             <ul className="space-y-4">
               <li>
                 <Link
                   href="/about"
-                  className="flex items-center text-white/80 hover:text-white transition-colors"
+                  className="flex items-center text-sm text-white/80 transition-colors hover:text-white"
                 >
                   <FileText className="mr-2 h-4 w-4 flex-shrink-0" />
                   <span>About Us</span>
@@ -138,7 +139,7 @@ export default function Footer() {
               <li>
                 <Link
                   href="/testimonials"
-                  className="flex items-center text-white/80 hover:text-white transition-colors"
+                  className="flex items-center text-sm text-white/80 transition-colors hover:text-white"
                 >
                   <FileText className="mr-2 h-4 w-4 flex-shrink-0" />
                   <span>Testimonials</span>
@@ -146,8 +147,17 @@ export default function Footer() {
               </li>
               <li>
                 <Link
+                  href="/our-work"
+                  className="flex items-center text-sm text-white/80 transition-colors hover:text-white"
+                >
+                  <FileText className="mr-2 h-4 w-4 flex-shrink-0" />
+                  <span>Our Work</span>
+                </Link>
+              </li>
+              <li>
+                <Link
                   href="/blog"
-                  className="flex items-center text-white/80 hover:text-white transition-colors"
+                  className="flex items-center text-sm text-white/80 transition-colors hover:text-white"
                 >
                   <FileText className="mr-2 h-4 w-4 flex-shrink-0" />
                   <span>Blog</span>
@@ -156,7 +166,7 @@ export default function Footer() {
               <li>
                 <Link
                   href="/contact"
-                  className="flex items-center text-white/80 hover:text-white transition-colors"
+                  className="flex items-center text-sm text-white/80 transition-colors hover:text-white"
                 >
                   <Mail className="mr-2 h-4 w-4 flex-shrink-0" />
                   <span>Contact Us</span>
@@ -165,7 +175,7 @@ export default function Footer() {
               <li>
                 <Link
                   href="/privacy-policy"
-                  className="flex items-center text-white/80 hover:text-white transition-colors"
+                  className="flex items-center text-sm text-white/80 transition-colors hover:text-white"
                 >
                   <FileText className="mr-2 h-4 w-4 flex-shrink-0" />
                   <span>Privacy Policy</span>
@@ -174,7 +184,7 @@ export default function Footer() {
               <li>
                 <Link
                   href="/terms-conditions"
-                  className="flex items-center text-white/80 hover:text-white transition-colors"
+                  className="flex items-center text-sm text-white/80 transition-colors hover:text-white"
                 >
                   <FileText className="mr-2 h-4 w-4 flex-shrink-0" />
                   <span>Terms & Conditions</span>
@@ -183,7 +193,7 @@ export default function Footer() {
               <li>
                 <Link
                   href="/trust-centre"
-                  className="flex items-center text-white/80 hover:text-white transition-colors"
+                  className="flex items-center text-sm text-white/80 transition-colors hover:text-white"
                 >
                   <Shield className="mr-2 h-4 w-4 flex-shrink-0" />
                   <span>Trust Centre</span>
@@ -194,7 +204,7 @@ export default function Footer() {
 
           {/* Contact */}
           <div className="space-y-6">
-            <h3 className="text-xl font-semibold">Contact</h3>
+            <h3 className="text-lg font-semibold">Contact</h3>
             <ul className="space-y-5">
               <li className="flex items-start">
                 <Phone className="mr-3 h-5 w-5 flex-shrink-0 mt-0.5 text-white/90" />
@@ -202,7 +212,7 @@ export default function Footer() {
                   <a
                     href={'tel:' + contactNumber}
                     onClick={() => trackConversion('phone_click')}
-                    className="text-white hover:underline transition-colors"
+                    className="text-sm text-white transition-colors hover:underline"
                   >
                     {contactNumber}
                   </a>
@@ -215,7 +225,7 @@ export default function Footer() {
                 <div>
                   <a
                     href="mailto:info@securepal.com.au"
-                    className="text-white hover:underline transition-colors"
+                    className="text-sm text-white transition-colors hover:underline"
                   >
                     info@securepal.com.au
                   </a>
@@ -227,7 +237,7 @@ export default function Footer() {
               <li className="flex items-start">
                 <MapPin className="mr-3 h-5 w-5 flex-shrink-0 mt-0.5 text-white/90" />
                 <div>
-                  <p className="text-white">
+                  <p className="text-sm leading-6 text-white">
                     Address: 133 10 park road, Hurstville NSW 2220
                   </p>
                   <p className="text-sm text-white/70 mt-1">
@@ -238,7 +248,7 @@ export default function Footer() {
               <li className="flex items-start">
                 <Clock className="mr-3 h-5 w-5 flex-shrink-0 mt-0.5 text-white/90" />
                 <div>
-                  <p className="text-white">Business Hours</p>
+                  <p className="text-sm text-white">Business Hours</p>
                   <p className="text-sm text-white/70 mt-1">Mon-Fri: 9am-6pm</p>
                   <p className="text-sm text-white/70">Sat: 10am-2pm</p>
                 </div>

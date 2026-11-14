@@ -10,6 +10,7 @@ const pages = [
   '/pricing',
   '/packages',
   '/contact',
+  '/our-work',
   '/testimonials',
   '/blog',
   '/privacy-policy',

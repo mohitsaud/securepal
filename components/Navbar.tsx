@@ -37,6 +37,7 @@ const primaryNavigation = [
   { name: 'Home', href: '/' },
   { name: 'Industries', href: '/industries' },
   { name: 'Client Stories', href: '/testimonials' },
+  { name: 'Our Work', href: '/our-work' },
   { name: 'Pricing', href: '/pricing' },
   { name: 'Resources', href: '/blog' },
   { name: 'About Us', href: '/about' },

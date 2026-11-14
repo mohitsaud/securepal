@@ -10,7 +10,7 @@ export function ClientLogoStrip() {
   return (
     <section
       aria-label="SecurePal clients"
-      className="border-y border-border bg-fog py-10 sm:py-12"
+      className="bg-fog py-10 sm:py-12"
     >
       <div className="container px-4">
         <div className="flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between sm:gap-8">
@@ -22,12 +22,12 @@ export function ClientLogoStrip() {
               Better IT, built around your team.
             </h2>
           </div>
-          <p className="max-w-sm text-sm leading-6 text-muted-foreground sm:text-right">
+          <p className="max-w-md text-sm leading-6 text-muted-foreground sm:text-right">
             Supporting teams in education, hospitality and community services.
           </p>
         </div>
       </div>
-      <div className="client-logo-marquee mt-7 overflow-hidden border-y border-border bg-white py-3 sm:mt-8 sm:py-4">
+      <div className="client-logo-marquee mt-7 overflow-hidden bg-white py-3 sm:mt-8 sm:py-4">
         <div className="client-logo-track">
           {[false, true].map((isDuplicate) => (
             <ul
