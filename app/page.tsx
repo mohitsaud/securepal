@@ -35,7 +35,7 @@ export default function Home() {
       <HowWeWorkSection />
       <TestimonialCarousel />
       <BlogCarousel />
-      <UpgradeSection />
+      {/* <UpgradeSection /> */}
 
       <section
         aria-labelledby="homepage-faq-title"
