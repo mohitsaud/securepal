@@ -31,4 +31,12 @@ export const testimonialsData = [
       'SecurePal built a fully accessible, secure website for us, ensuring compliance with privacy regulations.',
     image: '/avatars/zestlife.jpg',
   },
+  {
+    name: 'Bailenelson',
+    feedback:
+      'SecurePal delivered reliable IT support and proactive cybersecurity for our business. Their team is responsive, strategic, and easy to work with, helping us stay secure and efficient as we grow.',
+    homepagetext:
+      'SecurePal delivered reliable IT support and proactive cybersecurity for our business.',
+    image: '/avatars/baileynelson.jpg',
+  },
 ];

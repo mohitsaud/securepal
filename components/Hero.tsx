@@ -13,9 +13,7 @@ export default function HeroSection() {
     <section className="bg-navy text-white">
       <div className="container pb-16 pt-8 text-center sm:pb-20 sm:pt-10 lg:pb-24 lg:pt-12">
         <motion.div
-          initial={
-            shouldReduceMotion ? false : { opacity: 0, y: 12 }
-          }
+          initial={shouldReduceMotion ? false : { opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{
             duration: shouldReduceMotion ? 0 : 0.4,
@@ -23,14 +21,23 @@ export default function HeroSection() {
           }}
           className="mx-auto max-w-5xl"
         >
-          <Logo size="lg" className="mx-auto mb-4" />
+          <div className="mb-4 flex justify-center">
+            <Logo size="lg" />
+          </div>
+          <div className="mb-5 inline-flex items-center gap-2 rounded-full border border-cyan/30 bg-white/5 px-4 py-2 text-[10px] font-semibold uppercase tracking-[0.18em] text-cyan sm:text-xs">
+            <span
+              aria-hidden="true"
+              className="inline-block h-2 w-2 rounded-full bg-emerald-400"
+            />
+            Microsoft Certified Partnership
+          </div>
           <h1 className="text-[clamp(2.75rem,5.5vw,4.75rem)] font-semibold leading-[1.04] tracking-[-0.05em] text-white">
             <span className="block">IT that works.</span>
             <span className="block">Security that matters.</span>
           </h1>
           <p className="mx-auto mt-5 max-w-2xl text-base leading-7 text-slate-200 sm:mt-6 sm:text-lg sm:leading-8">
-            IT support and cybersecurity for Australian small businesses,
-            scoped up front.
+            IT support and cybersecurity for Australian small businesses, scoped
+            up front.
           </p>
           <div className="mt-8 flex flex-col justify-center gap-3 sm:mt-9 sm:flex-row">
             <Button
