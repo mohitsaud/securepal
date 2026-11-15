@@ -1,8 +1,6 @@
 import HeroSection from '@/components/Hero';
 import ServicesShowcase from '@/components/Services';
-import TestimonialCarousel, {
-  ClientLogoStrip,
-} from '@/components/Testimonials';
+import { ClientLogoStrip } from '@/components/Testimonials';
 import BlogCarousel from '@/components/Blog';
 import {
   AiSolutionsSection,
@@ -23,7 +21,6 @@ export default function Home() {
       <IndustriesSection />
       <SupportingServicesSection />
       <HowWeWorkSection />
-      <TestimonialCarousel />
       <BlogCarousel />
       <HomepageFaq />
       <HomepageCallToAction />

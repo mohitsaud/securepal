@@ -9,48 +9,85 @@ import { testimonialsData } from '@/constants/testimonials';
 export function ClientLogoStrip() {
   return (
     <section
-      aria-label="SecurePal clients"
-      className="bg-fog py-10 sm:py-12"
+      aria-labelledby="client-logo-heading"
+      className="bg-navy px-4 py-10 sm:py-14"
     >
-      <div className="container px-4">
-        <div className="flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between sm:gap-8">
-          <div>
-            <p className="text-sm font-semibold text-primary">
-              Local businesses we support
-            </p>
-            <h2 className="mt-2 font-heading text-2xl font-bold tracking-tight text-navy sm:text-3xl">
-              Better IT, built around your team.
-            </h2>
-          </div>
-          <p className="max-w-md text-sm leading-6 text-muted-foreground sm:text-right">
-            Supporting teams in education, hospitality and community services.
-          </p>
-        </div>
-      </div>
-      <div className="client-logo-marquee mt-7 overflow-hidden bg-white py-3 sm:mt-8 sm:py-4">
-        <div className="client-logo-track">
-          {[false, true].map((isDuplicate) => (
-            <ul
-              key={String(isDuplicate)}
-              aria-hidden={isDuplicate || undefined}
-              className="client-logo-group"
+      <div className="container">
+        <div className="rounded-3xl bg-white px-5 py-10 sm:px-10 sm:py-14 lg:px-16">
+          <header className="mx-auto max-w-3xl text-center">
+            <h2
+              id="client-logo-heading"
+              className="font-heading text-3xl font-bold tracking-tight text-navy sm:text-4xl"
             >
-              {testimonialsData.map((client) => (
-                <li
-                  key={client.name}
-                  className="flex h-20 w-36 shrink-0 items-center justify-center sm:h-24 sm:w-48"
+              Trusted by organisations like yours
+            </h2>
+            <p className="mt-3 font-heading text-lg font-semibold text-navy sm:text-xl">
+              Better IT, built around your team.
+            </p>
+            <p className="mx-auto mt-2 max-w-xl text-sm leading-6 text-muted-foreground sm:text-base">
+              Supporting teams in education, hospitality and community services.
+            </p>
+          </header>
+
+          <div
+            aria-label="Organisations that work with SecurePal"
+            className="client-logo-marquee mt-8 overflow-hidden"
+          >
+            <div className="client-logo-track">
+              {[false, true].map((isDuplicate) => (
+                <ul
+                  key={String(isDuplicate)}
+                  aria-hidden={isDuplicate || undefined}
+                  className="client-logo-group"
                 >
-                  <Image
-                    src={client.image}
-                    alt={isDuplicate ? '' : client.name}
-                    width={192}
-                    height={128}
-                    sizes="(max-width: 640px) 144px, 192px"
-                    className="max-h-16 w-32 object-contain sm:max-h-20 sm:w-40"
-                  />
-                </li>
+                  {testimonialsData.map((client) => (
+                    <li
+                      key={client.name}
+                      className="flex h-20 w-40 shrink-0 items-center justify-center sm:h-24 sm:w-48"
+                    >
+                      <Image
+                        src={client.image}
+                        alt={isDuplicate ? '' : client.name}
+                        width={192}
+                        height={128}
+                        sizes="(max-width: 640px) 160px, 192px"
+                        className="max-h-16 w-32 object-contain sm:max-h-20 sm:w-40"
+                      />
+                    </li>
+                  ))}
+                </ul>
               ))}
-            </ul>
+            </div>
+          </div>
+
+          <ul
+            aria-label="Customer testimonials"
+            className="mt-8 grid gap-8 border-t border-border pt-8 md:grid-cols-3 md:divide-x md:divide-border"
+          >
+            {testimonialsData.slice(0, 3).map((client) => (
+              <li key={client.name} className="text-center md:px-7 first:md:pl-0 last:md:pr-0">
+                <blockquote className="text-sm leading-6 text-navy">
+                  “{client.homepagetext}”
+                </blockquote>
+                <p className="mt-4 text-sm font-semibold text-primary">
+                  {client.name}
+                </p>
+              </li>
+            ))}
+          </ul>
+
+          {testimonialsData.slice(3, 4).map((client) => (
+            <figure
+              key={client.name}
+              className="mx-auto mt-12 max-w-3xl border-t border-border pt-10 text-center sm:mt-14 sm:pt-12"
+            >
+              <blockquote className="font-heading text-2xl font-bold leading-tight tracking-tight text-navy sm:text-3xl">
+                “{client.homepagetext}”
+              </blockquote>
+              <figcaption className="mt-4 text-sm font-semibold text-primary">
+                {client.name}
+              </figcaption>
+            </figure>
           ))}
         </div>
       </div>
