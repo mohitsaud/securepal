@@ -10,8 +10,13 @@ import {
 } from '@/components/HomepageSections';
 import HomepageFaq from '@/components/HomepageFaq';
 import HomepageCallToAction from '@/components/HomepageCallToAction';
+import { getPublishedBlogs } from '@/lib/blog-store';
 
-export default function Home() {
+export const dynamic = 'force-dynamic';
+
+export default async function Home() {
+  const featuredBlogs = await getPublishedBlogs(4);
+
   return (
     <div className="flex flex-col">
       <HeroSection />
@@ -21,7 +26,7 @@ export default function Home() {
       <IndustriesSection />
       <SupportingServicesSection />
       <HowWeWorkSection />
-      <BlogCarousel />
+      <BlogCarousel posts={featuredBlogs} />
       <HomepageFaq />
       <HomepageCallToAction />
     </div>

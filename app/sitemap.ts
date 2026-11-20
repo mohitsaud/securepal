@@ -1,7 +1,9 @@
 import type { MetadataRoute } from 'next';
-import { blogPosts } from '@/data/blog';
 import { industryProfiles } from '@/data/industries';
+import { getPublishedBlogs } from '@/lib/blog-store';
 import { SITE_URL } from '@/lib/seo-metadata';
+
+export const dynamic = 'force-dynamic';
 
 const pages = [
   '/',
@@ -41,7 +43,8 @@ const pages = [
   '/services/website-hosting',
 ];
 
-export default function sitemap(): MetadataRoute.Sitemap {
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
+  const blogPosts = await getPublishedBlogs();
   const dynamicPages = [
     ...blogPosts.map((post) => `/blog/${post.slug}`),
     ...industryProfiles.map((industry) => `/industries/${industry.slug}`),

@@ -4,11 +4,25 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { motion, useReducedMotion } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
-import { blogPosts } from '@/data/blog';
+import type { BlogPost } from '@/lib/blog-types';
 
-const BlogCarousel = () => {
+function formatDate(post: BlogPost) {
+  return new Date(post.publishedAt ?? post.createdAt).toLocaleDateString('en-AU', {
+    timeZone: 'UTC',
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+  });
+}
+
+interface BlogCarouselProps {
+  posts: BlogPost[];
+}
+
+const BlogCarousel = ({ posts }: BlogCarouselProps) => {
   const shouldReduceMotion = useReducedMotion();
-  const [featuredPost, ...otherPosts] = blogPosts;
+  const featuredPost = posts.find((post) => post.featured) ?? posts[0];
+  const otherPosts = posts.filter((post) => post.id !== featuredPost?.id);
 
   if (!featuredPost) return null;
 
@@ -68,7 +82,7 @@ const BlogCarousel = () => {
             </Link>
             <div className="flex flex-col justify-center p-6 sm:p-7 lg:p-8">
               <p className="text-xs font-semibold text-primary">
-                {featuredPost.date}
+                {formatDate(featuredPost)}
               </p>
               <h3 className="mt-3 font-heading text-2xl font-bold leading-tight tracking-tight text-navy sm:text-3xl">
                 {featuredPost.title}
@@ -113,7 +127,7 @@ const BlogCarousel = () => {
                 </Link>
                 <div className="flex min-w-0 flex-1 flex-col justify-center p-4 sm:p-5">
                   <p className="text-xs font-semibold text-primary">
-                    {post.date}
+                    {formatDate(post)}
                   </p>
                   <h3 className="mt-1 line-clamp-2 font-heading text-base font-bold leading-snug tracking-tight text-navy sm:text-lg">
                     {post.title}

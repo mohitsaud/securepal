@@ -23,6 +23,7 @@ export default function ClientLayout({
   children: React.ReactNode;
 }) {
   const pathname = usePathname();
+  const isAdminRoute = pathname.startsWith('/admin');
 
   // SPA page tracking
   useEffect(() => {
@@ -76,11 +77,11 @@ export default function ClientLayout({
 
       {/* UI */}
       <div className="flex min-h-screen flex-col">
-        <Navbar />
+        {!isAdminRoute && <Navbar />}
         <main className="flex-1">{children}</main>
-        <Footer />
-        <ScrollToTopButton />
-        <WhatsAppButton />
+        {!isAdminRoute && <Footer />}
+        {!isAdminRoute && <ScrollToTopButton />}
+        {!isAdminRoute && <WhatsAppButton />}
         <Toaster position="top-right" richColors />
       </div>
     </div>

@@ -1,28 +1,23 @@
 import type { Metadata } from 'next';
 import Image from 'next/image';
-import DOMPurify from 'isomorphic-dompurify';
 import { notFound } from 'next/navigation';
 import { Avatar, AvatarFallback } from '@/components/ui/avatar';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
-import { blogPosts } from '@/data/blog';
+import { getPublishedBlogBySlug } from '@/lib/blog-store';
 import { createPageMetadata, SITE_URL } from '@/lib/seo-metadata';
 
 interface BlogPostPageProps {
   params: Promise<{ slug: string }>;
 }
 
-export function generateStaticParams() {
-  return blogPosts.map(({ slug }) => ({ slug }));
-}
-
-export const dynamicParams = false;
+export const dynamic = 'force-dynamic';
 
 export async function generateMetadata({
   params,
 }: BlogPostPageProps): Promise<Metadata> {
   const { slug } = await params;
-  const post = blogPosts.find((item) => item.slug === slug);
+  const post = await getPublishedBlogBySlug(slug);
 
   if (!post) return { title: 'Article not found | SecurePal' };
 
@@ -37,9 +32,16 @@ export async function generateMetadata({
 
 export default async function BlogPostPage({ params }: BlogPostPageProps) {
   const { slug } = await params;
-  const post = blogPosts.find((item) => item.slug === slug);
+  const post = await getPublishedBlogBySlug(slug);
 
   if (!post) notFound();
+  const publishedAt = new Date(post.publishedAt ?? post.createdAt);
+  const publishedDate = publishedAt.toLocaleDateString('en-AU', {
+    timeZone: 'UTC',
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+  });
 
   const articleJsonLd = {
     '@context': 'https://schema.org',
@@ -47,10 +49,10 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
     headline: post.title,
     description: post.excerpt,
     image: post.image,
-    datePublished: new Date(post.date).toISOString(),
+    datePublished: publishedAt.toISOString(),
     author: {
       '@type': 'Person',
-      name: post.author.name,
+      name: post.authorName,
     },
     publisher: {
       '@type': 'Organization',
@@ -86,16 +88,16 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
             <h1 className="text-3xl font-bold">{post.title}</h1>
             <div className="mt-4 flex items-center space-x-3">
               <Avatar>
-                <AvatarFallback>{post.author.name.charAt(0)}</AvatarFallback>
+                <AvatarFallback>{post.authorName.charAt(0)}</AvatarFallback>
               </Avatar>
               <p className="text-sm text-muted-foreground">
-                {post.author.name} • {post.date}
+                {post.authorName} • {publishedDate}
               </p>
             </div>
             <div
               className="mt-6 text-foreground"
               dangerouslySetInnerHTML={{
-                __html: DOMPurify.sanitize(post.content),
+                __html: post.content,
               }}
             />
             <Button asChild className="mt-6">
