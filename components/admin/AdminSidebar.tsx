@@ -4,12 +4,13 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useState } from 'react';
-import { ArrowUpRight, FilePlus2, LayoutDashboard, Menu, PanelLeftClose, X } from 'lucide-react';
+import { ArrowUpRight, FilePlus2, LayoutDashboard, Menu, PanelLeftClose, Settings, X } from 'lucide-react';
 import AdminSignOutButton from '@/components/admin/AdminSignOutButton';
 
 const navItems = [
   { label: 'Articles', href: '/admin', icon: LayoutDashboard, exact: true },
   { label: 'New article', href: '/admin/blog/new', icon: FilePlus2, exact: false },
+  { label: 'Settings', href: '/admin/settings', icon: Settings, exact: false },
 ];
 
 interface SidebarContentProps {

@@ -1,11 +1,27 @@
 import { NextResponse } from 'next/server';
 import { isAdminAuthenticated, isSameOriginRequest } from '@/lib/admin-auth';
-import { createBlog, getAdminBlogs, parseBlogInput } from '@/lib/blog-store';
+import {
+  createBlog,
+  getAdminBlogs,
+  getPaginatedAdminBlogs,
+  parseBlogInput,
+} from '@/lib/blog-store';
 
-export async function GET() {
+export async function GET(request: Request) {
   if (!(await isAdminAuthenticated())) {
     return NextResponse.json({ error: 'Authentication required.' }, { status: 401 });
   }
+
+  const { searchParams } = new URL(request.url);
+  const pageParam = searchParams.get('page');
+  const limitParam = searchParams.get('limit');
+
+  if (pageParam || limitParam) {
+    const page = Math.max(1, parseInt(pageParam || '1', 10) || 1);
+    const limit = Math.max(1, Math.min(100, parseInt(limitParam || '8', 10) || 8));
+    return NextResponse.json(await getPaginatedAdminBlogs(page, limit));
+  }
+
   return NextResponse.json(await getAdminBlogs());
 }
 

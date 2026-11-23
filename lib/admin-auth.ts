@@ -164,6 +164,140 @@ export async function isAdminAuthenticated(): Promise<boolean> {
   }
 }
 
+export interface AuthenticatedAdminUser {
+  email: string;
+  name: string;
+  role: 'admin';
+}
+
+export async function getAuthenticatedAdminEmail(): Promise<string | null> {
+  const secret = process.env.ADMIN_SESSION_SECRET;
+  if (!secret || secret.length < 32) return null;
+
+  const value = (await cookies()).get(SESSION_COOKIE)?.value;
+  if (!value) return null;
+  const [payload, signature] = value.split('.');
+  if (!payload || !signature) return null;
+
+  try {
+    if (!safeEqual(signature, sign(payload))) return null;
+
+    const session = JSON.parse(
+      Buffer.from(payload, 'base64url').toString('utf8'),
+    ) as { email?: unknown; expiresAt?: unknown };
+
+    if (
+      typeof session.email !== 'string' ||
+      typeof session.expiresAt !== 'number' ||
+      session.expiresAt <= Date.now()
+    ) {
+      return null;
+    }
+
+    return session.email.trim().toLowerCase();
+  } catch {
+    return null;
+  }
+}
+
+export async function getAuthenticatedAdminUser(): Promise<AuthenticatedAdminUser | null> {
+  const email = await getAuthenticatedAdminEmail();
+  if (!email) return null;
+
+  try {
+    await connectAndInitUserModel();
+    const user = await UserModel.findOne({ email }).lean().exec();
+    if (user) {
+      return {
+        email: user.email,
+        name: user.name || 'Administrator',
+        role: user.role || 'admin',
+      };
+    }
+  } catch (error) {
+    console.error('Failed to get authenticated admin user from DB:', error);
+  }
+
+  return {
+    email,
+    name: 'Administrator',
+    role: 'admin',
+  };
+}
+
+export async function updateAdminPassword(
+  email: string,
+  currentPassword: string,
+  newPassword: string,
+): Promise<{ success: boolean; error?: string }> {
+  const normalizedEmail = email.trim().toLowerCase();
+
+  if (!newPassword || newPassword.length < 8) {
+    return {
+      success: false,
+      error: 'New password must be at least 8 characters long.',
+    };
+  }
+
+  if (currentPassword === newPassword) {
+    return {
+      success: false,
+      error: 'New password must be different from your current password.',
+    };
+  }
+
+  try {
+    await connectAndInitUserModel();
+    const user = await UserModel.findOne({ email: normalizedEmail }).exec();
+
+    // If user does not exist in DB yet, check env fallback
+    if (!user) {
+      const configuredEmail = process.env.ADMIN_EMAIL?.trim().toLowerCase();
+      const configuredPassword = process.env.ADMIN_PASSWORD;
+
+      if (
+        configuredEmail &&
+        configuredPassword &&
+        safeEqual(normalizedEmail, configuredEmail) &&
+        safeEqual(currentPassword, configuredPassword)
+      ) {
+        // Create user in DB with new hashed password
+        const passwordHash = await hashPassword(newPassword);
+        await UserModel.create({
+          email: configuredEmail,
+          name: 'Admin',
+          passwordHash,
+          role: 'admin',
+        });
+        return { success: true };
+      }
+
+      return { success: false, error: 'Current password is incorrect.' };
+    }
+
+    // Verify current password with scrypt
+    const isCurrentValid = await verifyPassword(
+      currentPassword,
+      user.passwordHash,
+    );
+    if (!isCurrentValid) {
+      return { success: false, error: 'Current password is incorrect.' };
+    }
+
+    // Hash new password using salted scrypt
+    user.passwordHash = await hashPassword(newPassword);
+    await user.save();
+
+    return { success: true };
+  } catch (error) {
+    console.error('Failed to update admin password:', error);
+    return {
+      success: false,
+      error: 'Unable to update password. Please try again.',
+    };
+  }
+}
+
 export function isSameOriginRequest(request: Request) {
   const origin = request.headers.get('origin');
   if (!origin) return false;

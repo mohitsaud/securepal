@@ -48,10 +48,59 @@ export async function getPublishedBlogBySlug(
   return document ? toBlogPost(document) : null;
 }
 
+export interface PaginatedAdminBlogs {
+  posts: BlogPost[];
+  totalPosts: number;
+  totalPages: number;
+  currentPage: number;
+  pageSize: number;
+  counts: {
+    total: number;
+    published: number;
+    draft: number;
+  };
+}
+
 export async function getAdminBlogs(): Promise<BlogPost[]> {
   await connectToDatabase();
   const documents = await BlogPostModel.find().sort({ updatedAt: -1 }).lean().exec();
   return documents.map(toBlogPost);
+}
+
+export async function getPaginatedAdminBlogs(
+  page: number = 1,
+  pageSize: number = 8,
+): Promise<PaginatedAdminBlogs> {
+  await connectToDatabase();
+  const safePage = Math.max(1, page);
+  const skip = (safePage - 1) * pageSize;
+
+  const [totalPosts, publishedCount, draftCount, documents] = await Promise.all([
+    BlogPostModel.countDocuments(),
+    BlogPostModel.countDocuments({ status: 'published' }),
+    BlogPostModel.countDocuments({ status: 'draft' }),
+    BlogPostModel.find()
+      .sort({ updatedAt: -1 })
+      .skip(skip)
+      .limit(pageSize)
+      .lean()
+      .exec(),
+  ]);
+
+  const totalPages = Math.ceil(totalPosts / pageSize) || 1;
+
+  return {
+    posts: documents.map(toBlogPost),
+    totalPosts,
+    totalPages,
+    currentPage: safePage,
+    pageSize,
+    counts: {
+      total: totalPosts,
+      published: publishedCount,
+      draft: draftCount,
+    },
+  };
 }
 
 export async function getAdminBlogById(id: string): Promise<BlogPost | null> {
